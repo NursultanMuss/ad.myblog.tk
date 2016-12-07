@@ -5,6 +5,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
+use yii\data\Pagination;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
@@ -12,6 +13,9 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Programming;
+use frontend\models\Works;
+use frontend\models\Blog;
 
 /**
  * Site controller
@@ -26,26 +30,27 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['login', 'logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
                         'allow' => true,
+                        'actions' => ['login', 'signup'],
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
+                    [
+                        'class' => AccessControl::className(),
+                        'denyCallback' => function ($rule, $action) {
+                            throw new \Exception('У вас нет доступа к этой странице');
+                        }
+                    ]
                 ],
             ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
+
         ];
     }
 
@@ -72,7 +77,33 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Programming::find()->where(['hide' => 0]);
+        $pagination= new Pagination([
+            'defaultPageSize'=>3,
+            'totalCount' => $query->count()
+
+        ]);
+        $query_w=Works::find()->where(['active' => 1]);
+        $pagination_w = new Pagination([
+            'defaultPageSize'=>4,
+            'totalCount' => $query_w -> count()
+        ]);
+        $posts= $query->orderBy(['date' => SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+        $works=$query_w->orderBy(['date' => SORT_ASC])
+            ->offset($pagination_w->offset)
+            ->limit($pagination_w->limit)
+            ->all();
+
+        return $this->render('index',[
+            'posts' => $posts,
+            'works' => $works,
+            'active_page' => Yii::$app->request->get("page", 1),
+            'count_pages' => $pagination -> getPageCount(),
+            'pagination' => $pagination
+        ]);
     }
 
     /**
@@ -108,39 +139,125 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return mixed
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
+    
+    
+    /* -------------------------------------------------------------
+    ======	PAGES
+    ------------------------------------------------------------- */
+    
+    public function actionAbout(){
         return $this->render('about');
     }
+    public function actionContacts (){
+        $form = new ContactForm();
+        return $this->render('contacts',[
+            'form'
+        ]);
+    }
+    
+     public function actionWorks(){
+        $query=Works::find()->where(['active' => 1]);
+        $pagination = new Pagination([
+            'defaultPageSize'=>5,
+            'totalCount' => $query -> count()
+        ]);
+        $works=$query->orderBy(['date' => SORT_ASC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+        return $this->render('works',[
+            'works' => $works,
+            'active_page' => Yii::$app->request->get("page", 1),
+            'count_pages' => $pagination ->getPageCount(),
+            'pagination' => $pagination
+        ]);
+    }
+     public function actionWork(){
+        $work=Works::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
+        Works::setNumber($work);
+        return $this->render('work', [
+            'work' => $work
+        ]);
+    }
+    public function actionProgramming(){
+        $query = Programming::find()->where(['hide' => 0]);
+        $pagination = new Pagination([
+            'defaultPageSize'=> 9,
+            'totalCount' => $query -> count()
+        ]);
+        $prog_posts=$query->orderBy(['date' => SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+        return $this->render('programmings',[
+            'prog_posts' => $prog_posts,
+            'active_page' => Yii::$app->request->get('page',1),
+            'count_pages' => $pagination ->getPageCount(),
+            'pagination' => $pagination
+        ]);
+    }
 
+    public function actionProg_post(){
+        $prog_post =Programming::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
+        Programming::setNumbers([$prog_post]);
+        return $this->render('prog_post', [
+            'prog_post' => $prog_post
+        ]);
+    }
+
+    public function actionProg_category(){
+        $cat_post = Programming::find()->where(['category' => Yii::$app->getRequest()->getQueryParam('category')])->all();
+        $category=Yii::$app->getRequest()->getQueryParam('category');
+        return $this->render('prog_cat', [
+           'cat_post' => $cat_post,
+            'category' => $category
+        ]);
+    }
+
+    /* -------------------------------------------------------------
+======	PAGE
+------------------------------------------------------------- */
+
+    /* -- BLOG - POSTS
+    ------------------------------------------------------------- */
+
+    public function actionBlog (){
+        $query_p=Blog::find()->where(['hide' => 0]);
+        $pagination =new Pagination([
+            'defaultPageSize'=> 5,
+            'totalCount' => $query_p -> count()
+        ]);
+
+        $blog_posts= $query_p->orderBy(['date' => SORT_DESC])
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('blog',[
+            'blog_posts' => $blog_posts,
+            'active_page' => Yii::$app->request->get('page',1),
+            'count_pages' => $pagination ->getPageCount(),
+            'pagination' => $pagination
+        ]);
+    }
+
+    public function actionBlog_post (){
+        $blog_post=Blog::find()->where(['id' => Yii::$app->getRequest()->getQueryParams('id')])->one();
+        Blog::setNumbers($blog_post);
+        return $this->render('blog_post',[
+            'blog_post' => $blog_post
+        ]);
+    }
+    
+    
+    public function actionBlog_category(){
+        $cat_post = Blog::find()->where(['category' => Yii::$app->getRequest()->getQueryParam('category')])->all();
+        return $this->render('blog_cat', [
+            'cat_post' => $cat_post,
+            'category' => Yii::$app->getRequest()->getQueryParam('category')
+        ]);
+    }
+    
     /**
      * Signs user up.
      *
