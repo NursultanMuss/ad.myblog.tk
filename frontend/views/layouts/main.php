@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\Menu;
 use frontend\assets\AppAsset;
 use frontend\components\PopularPosts_Prog;
 use frontend\components\PopularPosts_Blog;
@@ -39,8 +40,7 @@ $admin_actions = ['admin', 'admin_blog']
 
 
 <div class="container">
-
-    <header id="navtop">
+<header id="navtop">
         <a href="<?=Yii::$app->urlManager->createUrl(["site/index"])?>" class="logo fleft">
             <img src="../web/img/logo.png" alt="Designa Studio">
         </a>
@@ -58,7 +58,17 @@ $admin_actions = ['admin', 'admin_blog']
                 <li><a href="<?=Yii::$app->urlManager->createUrl(["site/blog"])?>" <?php if ($action== "blog"){?>class="navactive"<?php }?>>Блог</a></li>
                 <li><a href="<?=Yii::$app->urlManager->createUrl(["site/contacts"])?>" <?php if ($action== "contacts"){?>class="navactive"<?php }?>>Контакты</a></li>
             </ul>
-
+            <?php if (Yii::$app->user->isGuest) {?>        
+            <ul>
+                <li><a href="<?=Yii::$app->urlManager->createUrl(["site/signup"])?>" <?php if ($action== "signup"){?>class="navactive"<?php }?>>Зарегистрироваться</a></li>
+                <li><a href="<?=Yii::$app->urlManager->createUrl(["site/login"])?>" <?php if ($action== "login"){?>class="navactive"<?php }?>>Войти</a></li>
+            </ul>
+            <?php }else {?>
+            <ul>
+                <li><a href="<?=Yii::$app->urlManager->createUrl(["site/logout"])?>" <?php if ($action== "logout"){?>class="navactive"<?php }?>>Выйти</a></li>
+            </ul>
+            <?php }?>
+            
             
         </nav>
     </header>
