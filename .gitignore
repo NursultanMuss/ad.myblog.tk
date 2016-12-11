@@ -9,6 +9,9 @@
 # netbeans project files
 nbproject
 
+# shop cms project files
+shop
+
 # zend studio for eclipse project files
 .buildpath
 .project

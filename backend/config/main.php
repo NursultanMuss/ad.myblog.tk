@@ -10,8 +10,16 @@ return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
-    'modules' => [],
+    'bootstrap' => [
+        'log',
+        'admin',
+        ],
+    'modules' => [
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',
+        ]
+        ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -37,6 +45,9 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', 
+        ]
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
