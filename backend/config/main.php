@@ -5,7 +5,9 @@ $params = array_merge(
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
+use \yii\web\Request;
 
+$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
@@ -23,6 +25,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+               'baseUrl' => $baseUrl,
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -47,15 +50,26 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager', 
-        ]
-        /*
+        ],
+        
         'urlManager' => [
+            'baseUrl' => $baseUrl,
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+//            'rules' => [
+//            ],
+        ],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<action:\w+>/<id:\d+>' => 'site/<action>',
+//                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<action:\w+>' => 'site/<action>',                           
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];

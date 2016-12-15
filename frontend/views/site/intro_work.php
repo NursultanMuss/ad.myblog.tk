@@ -1,7 +1,7 @@
 
 <figure class="grid col-one-quarter mq2-col-one-half">
     <a href="<?= $work->link?>" >
-        <img class="img-responsive" src="<?=$work->img?>" alt="<?=$work->address?>" >
+        <img class="img-responsive" src="<?php echo $work->img ?>" alt="<?=$work->address?>" >
         <span class="zoom"></span>
     </a>
     <figcaption>

@@ -42,7 +42,11 @@ $admin_actions = ['admin', 'admin_blog']
 <div class="container">
 <header id="navtop">
         <a href="<?=Yii::$app->urlManager->createUrl(["site/index"])?>" class="logo fleft">
-            <img src="../web/img/logo.png" alt="Designa Studio">
+            <?php if ($action == "prog_post" || $action == "work") {?>
+            <img src="../img/logo.png" alt="Designa Studio">
+            <?php } else { ?><img src="img/logo.png" alt="Designa Studio"> <?php } ?>
+           
+            
         </a>
 
         <nav class="fright">
@@ -61,7 +65,7 @@ $admin_actions = ['admin', 'admin_blog']
             <?php if (Yii::$app->user->isGuest) {?>        
             <ul>
                 <li><a href="<?=Yii::$app->urlManager->createUrl(["site/signup"])?>" <?php if ($action== "signup"){?>class="navactive"<?php }?>>Зарегистрироваться</a></li>
-                <li><a href="<?=Yii::$app->urlManager->createUrl(["site/login"])?>" <?php if ($action== "login"){?>class="navactive"<?php }?>>Войти</a></li>
+                <li><a href="<?=Yii::$app->urlManager->createUrl(["backend/site/login"])?>" <?php if ($action== "login"){?>class="navactive"<?php }?>>Войти</a></li>
             </ul>
             <?php }else {?>
             <ul>

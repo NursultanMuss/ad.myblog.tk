@@ -25,9 +25,9 @@ class Works extends ActiveRecord{
         $this->date = date('j ', $this->date).$monthes[date('n', $this->date)].date(', Y', $this->date);
 //        $this->description = $this->replaceContent($this->description);
         if($this->id == 1){
-            $this->img = '../web/img/works/' . $this->img;
+            $this->img = '/img/works/' . $this->img;
         }else{
-            $this->img = '../web/img/works/' . $this->img . ".jpg";
+            $this->img = '/img/works/' . $this->img . ".jpg";
         }
        // $this->video=$this->youtube("{youtube:".$this->video." ,480,295}");
 
