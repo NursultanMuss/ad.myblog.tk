@@ -42,7 +42,7 @@ $admin_actions = ['admin', 'admin_blog']
 <div class="container">
 <header id="navtop">
         <a href="<?=Yii::$app->urlManager->createUrl(["site/index"])?>" class="logo fleft">
-            <img src="../web/img/logo.png" alt="Designa Studio">
+            <img src="/img/logo.png" alt="Designa Studio">
         </a>
 
         <nav class="fright">
