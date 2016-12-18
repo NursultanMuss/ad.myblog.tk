@@ -61,6 +61,18 @@ return [
             ],
         ],
         
+         'urlManagerFrontend' => [
+            'baseUrl' => 'http://ad.myblog.tk',
+            'hostInfo' => 'http://ad.myblog.tk',
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '<action>/<id:\d+>' => 'site/<action>',
+                '<action>' => 'site/<action>',
+            ],
+        ],
+        
     ],
     'params' => $params,
 ];

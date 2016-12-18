@@ -61,7 +61,7 @@ $admin_actions = ['admin', 'admin_blog']
             <?php if (Yii::$app->user->isGuest) {?>        
             <ul>
                 <li><a href="<?=Yii::$app->urlManager->createUrl(["site/signup"])?>" <?php if ($action== "signup"){?>class="navactive"<?php }?>>Зарегистрироваться</a></li>
-                <li><a href="<?=Yii::$app->urlManager->createUrl(["site/login"])?>" <?php if ($action== "login"){?>class="navactive"<?php }?>>Войти</a></li>
+                <li><a href="<?=Yii::$app->urlManagerBackend->createUrl(["site/login"])?>" <?php if ($action== "login"){?>class="navactive"<?php }?>>Войти</a></li>
             </ul>
             <?php }else {?>
             <ul>
