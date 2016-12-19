@@ -16,7 +16,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
+    <meta charset="<?= Yii::$app->charset?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -35,7 +35,7 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Console', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -57,6 +57,19 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
+       <div class="adminmenuwrap">
+           <ul class="adminmenu">
+               <li>Programming Posts
+                    <ul class="actions">
+                        <li><a href="index">All Posts</a></li>
+                        <li><?= Html::a(Yii::t('app', 'Create Programming'), ['create']) ?></li>
+                        <li></li>
+                    </ul>
+               </li>
+               <li>My Works</li>
+               <li>My Blog</li>
+           </ul>
+       </div>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
