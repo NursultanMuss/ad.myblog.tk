@@ -1,6 +1,7 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Programming;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,6 +61,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $query=Programming::find()->where(['hide'=> 0]);
         return $this->render('index');
     }
 

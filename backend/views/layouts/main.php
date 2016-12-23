@@ -53,23 +53,47 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+    $menuItems2 =[
+      ['label' => 'Programming Posts', 'url' => ['programming/index']]
+    ];
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-left'],
+        'items' => [
+           [    'label' => 'Programming Posts',
+               'items' => [
+                ['label' => 'All Posts', 'url' => '/backend/web/programming/index'],
+                '<li class="divider"></li>',
+                ['label' => 'Create Post', 'url' => '/backend/web/programming/create'],
+                '<li class="divider"></li>',
+                ['label' => 'All Categories', 'url' => '/backend/web/programming/index'],
+               ]
+           ],
+            [    'label' => 'Works Posts',
+                'items' => [
+                    ['label' => 'All Posts', 'url' => '/backend/web/works/index'],
+                    '<li class="divider"></li>',
+                    ['label' => 'Create Post', 'url' => '/backend/web/works/create'],
+                    '<li class="divider"></li>',
+                    ['label' => 'All Categories', 'url' => '/backend/web/works/index'],
+                ]
+            ],
+            [    'label' => 'Blog',
+                'items' => [
+                    ['label' => 'All Posts', 'url' => '/backend/web/blog/index'],
+                    '<li class="divider"></li>',
+                    ['label' => 'Create Post', 'url' => '/backend/web/blog/create'],
+                    '<li class="divider"></li>',
+                    ['label' => 'All Categories', 'url' => '/backend/web/blog/index'],
+                ]
+            ]
+        ],
+    ]);
     NavBar::end();
     ?>
 
+
     <div class="container">
-       <div class="adminmenuwrap">
-           <ul class="adminmenu">
-               <li>Programming Posts
-                    <ul class="actions">
-                        <li><a href="index">All Posts</a></li>
-                        <li><?= Html::a(Yii::t('app', 'Create Programming'), ['create']) ?></li>
-                        <li></li>
-                    </ul>
-               </li>
-               <li>My Works</li>
-               <li>My Blog</li>
-           </ul>
-       </div>
+
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
