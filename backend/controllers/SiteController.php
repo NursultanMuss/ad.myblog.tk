@@ -1,7 +1,9 @@
 <?php
 namespace backend\controllers;
 
+use backend\models\Blog;
 use backend\models\Programming;
+use backend\models\Works;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -61,9 +63,20 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $query=Programming::find()->where(['hide'=> 0]);
-        return $this->render('index');
+        $query=Programming::find()->all();
+        $progPostN = count($query);
+
+        $query_b=Blog::find()->all();
+        $blogPostN = count($query_b);
+
+        return $this->render('index',[
+            '$query'  => $query,
+            'progPostN'  => $progPostN,
+            'blogPostN'  => $blogPostN
+        ]);
     }
+
+
 
     /**
      * Login action.
