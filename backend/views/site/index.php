@@ -6,14 +6,6 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
     <div class="body-content">
 
         <div class="row">
@@ -26,27 +18,42 @@ $this->title = 'My Yii Application';
 
                 <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
             </article>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <article class="col-lg-8">
+                <h2>Активность</h2>
+                <div class="row">
+                    <h4>Недавно опубликованы</h4>
+                    <div class="col-lg-6">
+                        <h5>о программирования</h5>
+                        <table>
+                            <tbody>
+                            <?php
+                            foreach($query_p_l as $value_p){include "prog_info.php";}
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5>статьи блога</h5>
+                        <table>
+                            <tbody>
+                            <?php
+                            foreach($query_b_l as $value_b){include "blog_info.php";}
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4>Последние работы</h4>
+                        <section class="grid col-three-quarters mq2-col-full">
+                            <div class="grid-wrap works">
+                        <?php foreach($query_w_l as $work) {include "intro_work.php";}?>
+                            </div>
+                        </section>
+                </div>
+            </article>
 
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
         </div>
 
     </div>

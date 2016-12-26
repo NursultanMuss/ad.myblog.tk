@@ -62,4 +62,14 @@ class Works extends \yii\db\ActiveRecord
             'testimonial' => Yii::t('app', 'Testimonial'),
         ];
     }
+    public $link;
+    public function afterFind() {
+        $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+        if($this->id == 1){
+            $this->img = '/img/works/' . $this->img;
+        }else{
+            $this->img = '/img/works/' . $this->img . ".jpg";
+        }
+        $this->link = Yii::$app->urlManager->createUrl(["site/work", "id" => $this->id]);
+    }
 }

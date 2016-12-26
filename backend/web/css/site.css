@@ -122,3 +122,55 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+
+/* -- WORKS / Home-page and Works-page
+------------------------------------------------------------- */
+.works figure > a{
+    display: block;
+    height: 100%; width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid #DDD; padding-top: 1em; }
+
+.works figure .zoom{
+    display: block;
+    position: absolute; top: 10px; left: 0;
+    background: url(../img/zoom.png) no-repeat center;
+    width: 100%; height: 100%;
+    *zoom: 1;
+    opacity: 0;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 0);
+    filter: alpha(opacity = 0); }
+
+.works figure figcaption{ margin-top: 1em; padding: 0 0.5em; white-space: nowrap; }
+.works figure figcaption a{line-height:2em; color: #555; font-weight: 700; }
+.works figure figcaption p{ margin: 0; }
+
+.works-page .works figure { margin-bottom: 3em;}
+
+.main aside{margin-bottom: 3em}
+.main aside menu{padding: 0 0 0 1em; line-height: 2em;}
+.main aside menu a{color: #999;}
+.main aside menu .buttonactive {color: #0078CF }
+.grid-wrap {margin-left: 0; }
+
+/*------------------------------------------------------------- */
+
+.col-one-quarter {width: 25%; }
+
+/* -- Media query 2 (mq2)
+------------------------------------------------------------- */
+@media only screen and (max-width: 48em) { /* 13 / 624 */
+    .mq2-col-full {width: 100%;}
+    .mq2-col-one-half {width: 50%; }
+    .mq2-col-one-third { width: 33.333%; }
+    .mq2-col-two-thirds {width: 66.666%; }
+    .mq2-col-one-quarter {width: 25%; }
+    .mq2-col-three-quarters {width: 75%; }
+    /**/
+    header nav { width: 100%; }
+    header nav ul {  padding: 0 ; border-left:none; line-height: 2em; }
+    header nav ul li { float: left;  padding: 0 1em ; border-left:1px solid #ddd; }
+    .slider { margin-top: 3em; }
+}

@@ -65,4 +65,7 @@ class Blog extends \yii\db\ActiveRecord
             'no_form' => Yii::t('app', 'No Form'),
         ];
     }
+    public function afterFind() {
+        $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+    }
 }
