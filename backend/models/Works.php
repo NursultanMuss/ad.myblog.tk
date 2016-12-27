@@ -70,6 +70,6 @@ class Works extends \yii\db\ActiveRecord
         }else{
             $this->img = '/img/works/' . $this->img . ".jpg";
         }
-        $this->link = Yii::$app->urlManager->createUrl(["site/work", "id" => $this->id]);
+        $this->link = Yii::$app->urlManagerFrontend->createUrl(["site/work", "id" => $this->id]);
     }
 }

@@ -7,10 +7,12 @@
  */
 ?>
 <tr>
-    <td>
+    <td class="date">
       <i><?= $value_p->date?></i>
     </td>
-    <td>
-        <?= $value_p->title?>
+    <td class="title">
+        <a href="<?= $value_p->link?>"><?= $value_p->title?></a>
+
     </td>
 </tr>
+

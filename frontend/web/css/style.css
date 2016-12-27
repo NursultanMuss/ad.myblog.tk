@@ -361,7 +361,7 @@ html[xmlns] .slides {display: block;}
 	-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 0);
 	filter: alpha(opacity = 0); }
 
-.works figure figcaption{ margin-top: 1em; padding: 0 0.5em; white-space: nowrap; }
+.works figure figcaption{ margin-top: 1em; padding: 0 0.5em; /*white-space: nowrap;*/ }
 .works figure figcaption a{line-height:2em; color: #555; font-weight: 700; }
 .works figure figcaption p{ margin: 0; }
 

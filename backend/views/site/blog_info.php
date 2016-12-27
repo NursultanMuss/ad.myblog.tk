@@ -7,10 +7,10 @@
  */
 ?>
 <tr>
-    <td>
+    <td class="date">
         <i><?= $value_b->date?></i>
     </td>
-    <td>
+    <td class="title">
         <?= $value_b->title?>
     </td>
 </tr>

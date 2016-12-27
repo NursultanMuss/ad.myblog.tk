@@ -11,15 +11,15 @@ $this->title = 'My Yii Application';
         <div class="row">
             <article class="col-lg-4">
                 <h2>На данный момент</h2>
+                <hr>
                 <span class="glyphicon glyphicon-pushpin"></span>
                 <i> <?= $progPostN?> записи по программированию</i></br>
                 <span class="glyphicon glyphicon-pushpin"></span>
                 <i> <?= $blogPostN?> записи по программированию</i>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
             </article>
             <article class="col-lg-8">
                 <h2>Активность</h2>
+                <hr>
                 <div class="row">
                     <h4>Недавно опубликованы</h4>
                     <div class="col-lg-6">
@@ -45,10 +45,8 @@ $this->title = 'My Yii Application';
                 </div>
                 <div class="row">
                     <h4>Последние работы</h4>
-                        <section class="grid col-three-quarters mq2-col-full">
-                            <div class="grid-wrap works">
+                        <section class="works">
                         <?php foreach($query_w_l as $work) {include "intro_work.php";}?>
-                            </div>
                         </section>
                 </div>
             </article>

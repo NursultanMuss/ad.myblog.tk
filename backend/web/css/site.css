@@ -40,6 +40,17 @@ body {
     font-style: italic;
 }
 
+/*  -- My own style --- */
+td.date {
+    font-size: 11px;
+    white-space: nowrap;
+}
+td.title {
+    padding-left: 20px;
+}
+
+/* --- End --- */
+
 /* add sorting icons to gridview sort links */
 a.asc:after, a.desc:after {
     position: relative;
@@ -143,7 +154,7 @@ a.desc:after {
     -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 0);
     filter: alpha(opacity = 0); }
 
-.works figure figcaption{ margin-top: 1em; padding: 0 0.5em; white-space: nowrap; }
+.works figure figcaption{ margin-top: 1em; padding: 0 0.5em; /*white-space: nowrap; */}
 .works figure figcaption a{line-height:2em; color: #555; font-weight: 700; }
 .works figure figcaption p{ margin: 0; }
 
@@ -174,3 +185,4 @@ a.desc:after {
     header nav ul li { float: left;  padding: 0 1em ; border-left:1px solid #ddd; }
     .slider { margin-top: 3em; }
 }
+
