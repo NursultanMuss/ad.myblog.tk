@@ -65,7 +65,9 @@ class Blog extends \yii\db\ActiveRecord
             'no_form' => Yii::t('app', 'No Form'),
         ];
     }
+    public $link;
     public function afterFind() {
         $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+        $this->link = Yii::$app->urlManager->createUrl(["blog/update", "id" => $this->id]);
     }
 }

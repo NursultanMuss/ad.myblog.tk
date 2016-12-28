@@ -11,6 +11,6 @@
         <i><?= $value_b->date?></i>
     </td>
     <td class="title">
-        <?= $value_b->title?>
+        <a href="<?=$value_b->link?>"><?= $value_b->title?></a>
     </td>
 </tr>

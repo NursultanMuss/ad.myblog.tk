@@ -70,14 +70,10 @@ class ProgPostsSearch extends Programming
             'no_form' => $this->no_form,
         ]);
 
-        $query->andFilterWhere(['like', 'resource', $this->resource])
-            ->andFilterWhere(['like', 'res_link', $this->res_link])
-            ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'entry_image', $this->entry_image])
+        $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'full_text', $this->full_text])
-            ->andFilterWhere(['like', 'meta_desc', $this->meta_desc])
-            ->andFilterWhere(['like', 'meta_key', $this->meta_key]);
+            ->andFilterWhere(['like', 'date', $this->date])
+            ->andFilterWhere(['like', 'hits', $this->hits]);
 
         return $dataProvider;
     }
