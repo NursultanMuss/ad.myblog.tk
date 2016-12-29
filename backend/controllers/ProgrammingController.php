@@ -37,8 +37,7 @@ class ProgrammingController extends Controller
     {
         $searchModel = new ProgPostsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $query=Programming::find()->all();
-        $q_posts=$query->orderBy(['date']);
+        $q_posts=Programming::find()->orderBy(['date' => SORT_DESC])->limit(6)->all();
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

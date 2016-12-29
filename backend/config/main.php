@@ -5,10 +5,15 @@ $params = array_merge(
     require(__DIR__ . '/params.php'),
     require(__DIR__ . '/params-local.php')
 );
+use \yii\web\Request;
 
+<<<<<<< HEAD
 //use \yii\web\Request;
 //$baseUrl = str_replace('/backend/web', '/cpanel', (new Request)->getBaseUrl());
 
+=======
+$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
+>>>>>>> master
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
@@ -26,7 +31,11 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+<<<<<<< HEAD
             'baseUrl' => $baseUrl,
+=======
+               'baseUrl' => $baseUrl,
+>>>>>>> master
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -57,6 +66,7 @@ return [
             'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+<<<<<<< HEAD
             'rules' => [
             ],
         ],
@@ -70,6 +80,19 @@ return [
             'rules' => [
                 '<action>/<id:\d+>' => 'site/<action>',
                 '<action>' => 'site/<action>',
+=======
+//            'rules' => [
+//            ],
+        ],
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                '<action:\w+>/<id:\d+>' => 'site/<action>',
+//                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<action:\w+>' => 'site/<action>',                           
+>>>>>>> master
             ],
         ],
         

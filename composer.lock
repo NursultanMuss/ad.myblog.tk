@@ -4,8 +4,13 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "be3e63b79eab193feb3db34628f2421b",
     "content-hash": "3c2a702fd0d1ba49f81e048c34eab7f5",
+=======
+    "hash": "91073e1764b3540267a630c1f59f0d9d",
+    "content-hash": "ddf3d337174ca32d438275fe2c53cafd",
+>>>>>>> master
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -301,6 +306,7 @@
         },
         {
             "name": "mdmsoft/yii2-admin",
+<<<<<<< HEAD
             "version": "2.7",
             "source": {
                 "type": "git",
@@ -311,6 +317,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/f1711779ea3c19e334d9774d223a9682e693b31e",
                 "reference": "f1711779ea3c19e334d9774d223a9682e693b31e",
+=======
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mdmsoft/yii2-admin.git",
+                "reference": "13de4624a0e46d8341d3461f81046f39a6459836"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/13de4624a0e46d8341d3461f81046f39a6459836",
+                "reference": "13de4624a0e46d8341d3461f81046f39a6459836",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -355,7 +373,11 @@
                 "rbac",
                 "yii"
             ],
+<<<<<<< HEAD
             "time": "2016-05-20 23:38:13"
+=======
+            "time": "2016-12-01 03:31:21"
+>>>>>>> master
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3059,7 +3081,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "mdmsoft/yii2-admin": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

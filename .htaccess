@@ -4,7 +4,13 @@ Options -Indexes
   RewriteEngine on
 
   RewriteCond %{REQUEST_URI} !^public
+<<<<<<< HEAD
   RewriteRule ^(.*)$ frontend/web/$1 [L] 
+=======
+  RewriteRule ^(.*)$ frontend/web/$1 [L]
+
+  
+>>>>>>> master
 </IfModule>
 
 # Deny accessing below extensions
@@ -14,4 +20,8 @@ Deny from all
 </Files>
 
 # Deny accessing dot files
+<<<<<<< HEAD
 RewriteRule (^\.|/\.) - [F]
+=======
+RewriteRule (^\.|/\.) - [F]
+>>>>>>> master

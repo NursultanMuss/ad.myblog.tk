@@ -47,7 +47,7 @@ $this->registerMetaTag([
     <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
         <figure class="">
             <a href="<?=$work->address?>" >
-                <img src="<?=$work->img?>" alt="<?=$work->img?>" >
+                <img src="..\<?=$work->img?>" alt="<?=$work->img?>" >
             </a>
         </figure>
     </section>
