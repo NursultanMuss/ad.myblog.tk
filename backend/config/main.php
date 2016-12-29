@@ -7,13 +7,7 @@ $params = array_merge(
 );
 use \yii\web\Request;
 
-<<<<<<< HEAD
-//use \yii\web\Request;
-//$baseUrl = str_replace('/backend/web', '/cpanel', (new Request)->getBaseUrl());
 
-=======
-$baseUrl = str_replace('/web', '', (new Request)->getBaseUrl());
->>>>>>> master
 return [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
@@ -31,11 +25,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
-<<<<<<< HEAD
-            'baseUrl' => $baseUrl,
-=======
-               'baseUrl' => $baseUrl,
->>>>>>> master
+
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -63,24 +53,8 @@ return [
         ],
         
         'urlManager' => [
-            'baseUrl' => $baseUrl,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-<<<<<<< HEAD
-            'rules' => [
-            ],
-        ],
-        
-         'urlManagerFrontend' => [
-            'baseUrl' => 'http://ad.myblog.tk',
-            'hostInfo' => 'http://ad.myblog.tk',
-            'class' => 'yii\web\UrlManager',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '<action>/<id:\d+>' => 'site/<action>',
-                '<action>' => 'site/<action>',
-=======
 //            'rules' => [
 //            ],
         ],
@@ -91,8 +65,7 @@ return [
             'rules' => [
                 '<action:\w+>/<id:\d+>' => 'site/<action>',
 //                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<action:\w+>' => 'site/<action>',                           
->>>>>>> master
+                '<action:\w+>' => 'site/<action>',
             ],
         ],
         

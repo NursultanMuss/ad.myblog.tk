@@ -18,5 +18,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Programming'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    
+    <article class="col-lg-8">
+        <div class="row">
+            <?php foreach($q_posts as $post){ include "intro_post.php";}?>
+        </div>
+    </article>
 </div>
