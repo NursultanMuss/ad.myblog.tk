@@ -69,7 +69,7 @@ class Programming extends \yii\db\ActiveRecord
     }
     public $link;
     public function afterFind() {
-        $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+//        $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
         $this->link = Yii::$app->urlManager->createUrl(["programming/update", "id" => $this->id]);
         }
 }

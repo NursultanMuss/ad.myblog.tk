@@ -48,33 +48,37 @@ class ProgPostsSearch extends Programming
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => 8,
             ],
+        ]);
+
+        $dataProvider->setSort([
+           'attributes' =>[
+               'date',
+               'title' => [
+                   'asc' => ['title' => SORT_ASC],
+                   'desc' => ['title' => SORT_DESC],
+                   'label' => 'sdas',
+                   'default' => SORT_ASC
+               ]
+           ]
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+//             $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'is_release' => $this->is_release,
-            'date' => $this->date,
-            'hits' => $this->hits,
-            'hide' => $this->hide,
-            'no_form' => $this->no_form,
+            'Дата' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'date', $this->date])
-            ->andFilterWhere(['like', 'hits', $this->hits]);
-
+        $query->andFilterWhere(['like', 'Статья', $this->title])
+            ;
         return $dataProvider;
     }
 }

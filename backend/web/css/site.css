@@ -186,3 +186,9 @@ a.desc:after {
     .slider { margin-top: 3em; }
 }
 
+/*---  Custom changes
+---*/
+.hiden{
+    display:none;
+}
+

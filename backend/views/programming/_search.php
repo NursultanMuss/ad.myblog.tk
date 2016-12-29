@@ -15,15 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'is_release') ?>
-
-    <?= $form->field($model, 'resource') ?>
-
-    <?= $form->field($model, 'res_link') ?>
+<!--    --><?//= $form->field($model, 'date') ?>
 
     <?= $form->field($model, 'title') ?>
+
+<!--    --><?//= $form->field($model, 'resource') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'res_link') ?>
+<!---->
+<!--    --><?//= $form->field($model, 'title') ?>
 
     <?php // echo $form->field($model, 'entry_image') ?>
 
@@ -44,8 +44,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'no_form') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Найти'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetInput(Yii::t('app', 'Сбросить'), ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
