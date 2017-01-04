@@ -28,10 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'emptyText' => 'Нет данных',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'id',
-//            'is_release',
-//            'title',
             [
                 'attribute' => 'title',
                 'header' => 'Статья',
@@ -42,10 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => true,
                 'encodeLabel' => true,
             ],
-//            'category',
             [
                 'attribute' => 'category',
-                'label' => 'Категория',
+                'header' => 'Категория',
                 'contentOptions' => [
                     'class' => 'td_category',
                     'style' => 'white-space: normal;'
@@ -53,10 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => true,
                 'encodeLabel' => true,
             ],
-//            'img',
             [
                 'attribute' => 'img',
-                'label' => 'Картинка',
+                'header' => 'Картинка',
                 'format' => 'raw',
                 'value' => function($img){
                     return Html::img(Url::toRoute($img),[
@@ -65,19 +59,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 },
             ],
-            // 'intro_text:ntext',
-            // 'full_text:ntext',
-            // 'date',
             [
                 'attribute' => 'date',
-                'header' => 'Дата',
+                'label' => 'Дата',
                 'format' =>  ['date', 'HH:mm:ss -- dd.MM.Y'],
+                'contentOptions' => [
+                    'class' => 'td_category',
+                    'style' => 'white-space: normal;'
+                ],
                 'enableSorting' => true,
                 'encodeLabel' => true,
             ],
-            // 'meta_desc',
-            // 'meta_key',
-//             'hits',
             [
                 'attribute' => 'hits',
                 'header' => 'Количество просмотров',
@@ -88,8 +80,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => true,
                 'encodeLabel' => true,
             ],
-            // 'hide',
-            // 'no_form',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
