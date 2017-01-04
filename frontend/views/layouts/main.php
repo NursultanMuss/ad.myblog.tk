@@ -28,7 +28,7 @@ $admin_actions = ['admin', 'admin_blog']
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link rel="shortcut icon" href="../web/favicon.ico" type='image/x-icon' />
+    <link rel="shortcut icon" href="../frontend/web/favicon.ico" type='image/x-icon' />
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?136"></script>
 
 <!--    <script type="text/javascript">

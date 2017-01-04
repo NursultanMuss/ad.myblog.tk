@@ -77,8 +77,7 @@ class ProgPostsSearch extends Programming
             'Дата' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'Статья', $this->title])
-            ;
+        $query->andFilterWhere(['like', 'Title', $this->title]);
         return $dataProvider;
     }
 }

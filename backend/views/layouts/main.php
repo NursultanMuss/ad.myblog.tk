@@ -59,29 +59,29 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
-           [    'label' => 'Programming Posts',
+           [    'label' => 'Статьи о программировании',
                'items' => [
-                ['label' => 'All Posts', 'url' => '/backend/web/programming/index'],
+                ['label' => 'Все статьи', 'url' => '/backend/web/programming/index'],
                 '<li class="divider"></li>',
-                ['label' => 'Create Post', 'url' => '/backend/web/programming/create'],
+                ['label' => 'Создать статью', 'url' => '/backend/web/programming/create'],
                 '<li class="divider"></li>',
                 ['label' => 'All Categories', 'url' => '/backend/web/programming/index'],
                ]
            ],
-            [    'label' => 'Works Posts',
+            [    'label' => 'Мои работы',
                 'items' => [
-                    ['label' => 'All Posts', 'url' => '/backend/web/works/index'],
+                    ['label' => 'Все статьи', 'url' => '/backend/web/works/index'],
                     '<li class="divider"></li>',
-                    ['label' => 'Create Post', 'url' => '/backend/web/works/create'],
+                    ['label' => 'Создать статью', 'url' => '/backend/web/works/create'],
                     '<li class="divider"></li>',
                     ['label' => 'All Categories', 'url' => '/backend/web/works/index'],
                 ]
             ],
-            [    'label' => 'Blog',
+            [    'label' => 'Статьи блога',
                 'items' => [
-                    ['label' => 'All Posts', 'url' => '/backend/web/blog/index'],
+                    ['label' => 'Все статьи', 'url' => '/backend/web/blog/index'],
                     '<li class="divider"></li>',
-                    ['label' => 'Create Post', 'url' => '/backend/web/blog/create'],
+                    ['label' => 'Создать статью', 'url' => '/backend/web/blog/create'],
                     '<li class="divider"></li>',
                     ['label' => 'All Categories', 'url' => '/backend/web/blog/index'],
                 ]

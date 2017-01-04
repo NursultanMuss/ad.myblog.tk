@@ -1,4 +1,5 @@
 <?php
+use yii\grid\GridView;
 /**
  * Created by PhpStorm.
  * User: HomeO

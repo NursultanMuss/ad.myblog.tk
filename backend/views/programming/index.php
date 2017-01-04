@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ProgPostsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Programming Posts');
+$this->title = Yii::t('app', 'Статьи о программировании');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="programming-index">
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
+//                'filterModel' => $searchModel,
                 'layout'=>"{pager}\n{items}\n{summary}",
                 'summary' => "Сейчас на <b>{page}</b> странице <b>{begin}</b>\n - <b>{end}</b> записи из <b>{totalCount}</b> .",
                 'showOnEmpty' => true,
@@ -34,8 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     [
                         'attribute' => 'date',
-                        'header' => 'Дата',
-                        'format' =>  ['date', 'HH:mm:ss -- dd.MM.YYYY'],
+                        'label' => 'Дата',
+                        'format' =>  ['date', 'HH:mm:ss -- dd.MM.Y'],
                         'enableSorting' => true,
                         'encodeLabel' => true,
                     ],

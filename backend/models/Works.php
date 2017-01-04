@@ -64,7 +64,9 @@ class Works extends \yii\db\ActiveRecord
     }
     public $link;
     public function afterFind() {
-//        $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+        $controller = Yii::$app->controller->id;
+        if($controller == "site"){
+            $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);}
         if($this->id == 1){
             $this->img = '/img/works/' . $this->img;
         }else{

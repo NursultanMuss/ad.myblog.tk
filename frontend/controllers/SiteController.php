@@ -174,7 +174,7 @@ class SiteController extends Controller
     }
      public function actionWork(){
         $work=Works::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
-        Works::setNumber($work);
+//        Works::setNumber($work);
         return $this->render('work', [
             'work' => $work
         ]);

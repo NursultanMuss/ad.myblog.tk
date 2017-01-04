@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -46,6 +47,8 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Найти'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetInput(Yii::t('app', 'Сбросить'), ['class' => 'btn btn-default']) ?>
+        <?= Html::button(Html::a('<span class="glyphicon glyphicon-arrow-right">Вернуться</span>',
+            Url::toRoute(''), ['style' => 'color:#000'] ), ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
