@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use  kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Programming */
@@ -20,13 +21,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'entry_image')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'entry_image')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'full_text')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(DateControl::classname(), [
+    'language' => $config->language,
+    'type' => $config->type,
+    'autoWidget' => $config->autoWidget,
+    'widgetClass' => $config->widgetClass,
+    'displayFormat' => $config->displayFormat,
+    // display as 'php:d-F-Y' or 'php:d-F-Y H:i:s'
+    'saveOptions' => $saveOptions,    // configure save options as per setting
+    'widgetOptions' => $widgetOptions // configure widget options as per setting
+    ]);
+    ?>
+<!--    --><?//= $form->field($model, 'date')->textInput() ?>
 
     <?= $form->field($model, 'meta_desc')->textInput(['maxlength' => true]) ?>
 
@@ -43,5 +54,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    <?= $model->date?>
 </div>

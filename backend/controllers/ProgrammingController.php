@@ -2,12 +2,15 @@
 
 namespace backend\controllers;
 
+use Faker\Provider\DateTime;
 use Yii;
 use backend\models\Programming;
 use backend\models\ProgPostsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * ProgrammingController implements the CRUD actions for Programming model.
@@ -26,6 +29,7 @@ class ProgrammingController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            
         ];
     }
 
@@ -67,8 +71,15 @@ class ProgrammingController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            $model->is_release=1;
+            $model->hide = 0;
+            $model->no_form=0;
+            $model->hits =0;
+            $model->date=new TimestampBehavior();
+
             return $this->render('create', [
                 'model' => $model,
+                
             ]);
         }
     }

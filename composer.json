@@ -18,11 +18,10 @@
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-<<<<<<< HEAD
-        "mdmsoft/yii2-admin": "~2.0"
-=======
-        "mdmsoft/yii2-admin": "2.x-dev"
->>>>>>> master
+
+        "mdmsoft/yii2-admin": "2.x-dev",
+        "kartik-v/yii2-datecontrol": "dev-master"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

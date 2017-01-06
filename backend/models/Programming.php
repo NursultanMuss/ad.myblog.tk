@@ -3,6 +3,9 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+use \yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "{{%programming}}".
@@ -30,6 +33,20 @@ class Programming extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%programming}}';
+    }
+
+    public function behaviors()
+    {
+        return [
+                [
+            'class' => TimestampBehavior::className(),
+            'attributes' => [
+                ActiveRecord::EVENT_BEFORE_INSERT => 'creation_time',
+                ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+                    ],
+            'value' => function() { return date('U');},
+                ],
+            ];
     }
 
     /**
