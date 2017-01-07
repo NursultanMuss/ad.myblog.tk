@@ -2,7 +2,6 @@
 
 namespace backend\controllers;
 
-use Faker\Provider\DateTime;
 use Yii;
 use backend\models\Programming;
 use backend\models\ProgPostsSearch;
@@ -75,7 +74,6 @@ class ProgrammingController extends Controller
             $model->hide = 0;
             $model->no_form=0;
             $model->hits =0;
-            $model->date=new TimestampBehavior();
 
             return $this->render('create', [
                 'model' => $model,

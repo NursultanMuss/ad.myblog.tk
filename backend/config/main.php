@@ -6,7 +6,7 @@ $params = array_merge(
     require(__DIR__ . '/params-local.php')
 );
 use \yii\web\Request;
-use \kartik\datecontrol\Module;
+use kartik\datecontrol\Module;
 
 
 return [
@@ -27,7 +27,7 @@ return [
             'displaySettings' => [
                 Module::FORMAT_DATE => 'dd-MM-yyyy',
                 Module::FORMAT_TIME => 'hh:mm:ss a',
-                Module::FORMAT_DATETIME => 'dd-MM-yyyy hh:mm:ss a',
+                Module::FORMAT_DATETIME => 'dd-MM-Y hh:mm:ss a',
             ],
             'saveSettings' => [
                 Module::FORMAT_DATE => 'php:U', // saves as unix timestamp

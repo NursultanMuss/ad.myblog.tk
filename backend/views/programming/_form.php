@@ -26,8 +26,17 @@ use  kartik\datecontrol\DateControl;
     <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'full_text')->textarea(['rows' => 6]) ?>
-<!--    --><?//= $form->field($model, 'date')->widget(DateControl::classname();?>
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?= $form->field($model, 'date')->widget(DateControl::classname(),[
+        'type'=>DateControl::FORMAT_DATETIME,
+        'displayFormat' => 'd-M-Y H:i:s',
+        'ajaxConversion'=>true,
+        'widgetOptions' => [
+            'pluginOptions' => [
+                'autoclose' => true
+            ]
+        ]
+    ])?>
+<!--    --><?//= $form->field($model, 'date')->textInput() ?>
 
     <?= $form->field($model, 'meta_desc')->textInput(['maxlength' => true]) ?>
 
@@ -44,5 +53,5 @@ use  kartik\datecontrol\DateControl;
     </div>
 
     <?php ActiveForm::end(); ?>
-    <?= $model->date?>
+<!--    --><?//= $model->date?>
 </div>

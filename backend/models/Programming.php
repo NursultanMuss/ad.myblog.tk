@@ -35,19 +35,19 @@ class Programming extends \yii\db\ActiveRecord
         return '{{%programming}}';
     }
 
-    public function behaviors()
-    {
-        return [
-                [
-            'class' => TimestampBehavior::className(),
-            'attributes' => [
-                ActiveRecord::EVENT_BEFORE_INSERT => 'creation_time',
-                ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
-                    ],
-            'value' => function() { return date('U');},
-                ],
-            ];
-    }
+//    public function behaviors()
+//    {
+//        return [
+//                [
+//            'class' => TimestampBehavior::className(),
+//            'attributes' => [
+//                ActiveRecord::EVENT_BEFORE_INSERT => 'creation_time',
+//                ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
+//                    ],
+//            'value' => function() { return date('U');},
+//                ],
+//            ];
+//    }
 
     /**
      * @inheritdoc
