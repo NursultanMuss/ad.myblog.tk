@@ -63,10 +63,16 @@ class ProgrammingController extends Controller
     public function actionCreate()
     {
         $model = new Programming();
+        $model->date=date('U');
+        $model->is_release=1;
+        $model->hide=0;
+        $model->no_form=0;
+        $model->hits=0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+
             return $this->render('create', [
                 'model' => $model,
             ]);
