@@ -10,13 +10,21 @@ use yii\widgets\ActiveForm;
 
 <div class="works-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => '/img/works/*']) ?>
+    <?php
+    if(isset($model->img) && file_exists(Yii::getAlias('@webroot'. $model->img)))
+    {
+        echo Html::img($model->img, ['class'=>'img-responsive']);
+        echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
+    }
+    ?>
+
+    <?= $form->field($model, 'file')->fileInput() ?>
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 

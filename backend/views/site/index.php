@@ -13,9 +13,16 @@ $this->title = 'My Yii Application';
                 <h2>На данный момент</h2>
                 <hr>
                 <span class="glyphicon glyphicon-pushpin"></span>
-                <i> <?= $progPostN?> записи по программированию</i></br>
+                <?php if($progPostN>=2 && $progPostN<5){?>
+                <i><?=$progPostN?> записи по программированию</i></br>
+                <?php }else {?>
+                <i><?=$progPostN?> записей по программированию</i></br> <?php }?>
+
                 <span class="glyphicon glyphicon-pushpin"></span>
+                <?php if($blogPostN>=2 && $blogPostN<5){?>
                 <i> <?= $blogPostN?> записи по программированию</i>
+                <?php }else {?>
+                <i> <?= $blogPostN?> записей по программированию</i><?php }?>
             </article>
             <article class="col-lg-8">
                 <h2>Активность</h2>

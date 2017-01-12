@@ -42,7 +42,8 @@ class Works extends \yii\db\ActiveRecord
             [['testimonial'], 'string'],
             [['address', 'description'], 'string', 'max' => 255],
             [['type', 'client', 'details', 'technology'], 'string', 'max' => 60],
-            [['img'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 0]
+            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 0],
+            [['del_img'], 'boolean']
         ];
     }
 
@@ -66,33 +67,15 @@ class Works extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @var UploadedFile[]
-     */
-    public $imageFiles;
-    public function upload()
-    {
-        if ($this->validate()) {
-            foreach ($this->imageFiles as $file) {
-                $file->saveAs('/img/works/' . $file->baseName . '.' . $file->extension);
-                $this->img=$file->baseName. '.' . $file->extension;
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public $file;
+    public $del_img;
 
     public $link;
     public function afterFind() {
         $controller = Yii::$app->controller->id;
         if($controller == "site"){
             $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);}
-        if($this->id == 1){
             $this->img = '/img/works/' . $this->img;
-        }else{
-            $this->img = '/img/works/' . $this->img;
-        }
         $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }
 }
