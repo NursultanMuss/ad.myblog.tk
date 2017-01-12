@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\base\Model;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%works}}".
@@ -35,11 +37,12 @@ class Works extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['address', 'description', 'img', 'type', 'active', 'date', 'client', 'details', 'technology', 'testimonial'], 'required'],
+            [['address', 'description', 'type', 'active', 'date', 'client', 'details', 'technology', 'testimonial'], 'required'],
             [['active', 'date'], 'integer'],
             [['testimonial'], 'string'],
-            [['address', 'description', 'img'], 'string', 'max' => 255],
+            [['address', 'description'], 'string', 'max' => 255],
             [['type', 'client', 'details', 'technology'], 'string', 'max' => 60],
+            [['img'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 0]
         ];
     }
 
@@ -62,6 +65,24 @@ class Works extends \yii\db\ActiveRecord
             'testimonial' => Yii::t('app', 'Testimonial'),
         ];
     }
+
+    /**
+     * @var UploadedFile[]
+     */
+    public $imageFiles;
+    public function upload()
+    {
+        if ($this->validate()) {
+            foreach ($this->imageFiles as $file) {
+                $file->saveAs('/img/works/' . $file->baseName . '.' . $file->extension);
+                $this->img=$file->baseName. '.' . $file->extension;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public $link;
     public function afterFind() {
         $controller = Yii::$app->controller->id;
@@ -70,7 +91,7 @@ class Works extends \yii\db\ActiveRecord
         if($this->id == 1){
             $this->img = '/img/works/' . $this->img;
         }else{
-            $this->img = '/img/works/' . $this->img . ".jpg";
+            $this->img = '/img/works/' . $this->img;
         }
         $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }

@@ -66,18 +66,17 @@ class ProgrammingController extends Controller
     public function actionCreate()
     {
         $model = new Programming();
+        $model->is_release=1;
+        $model->hide = 0;
+        $model->no_form=0;
+        $model->hits =0;
+        $model->date=date("U");
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            $model->is_release=1;
-            $model->hide = 0;
-            $model->no_form=0;
-            $model->hits =0;
-
             return $this->render('create', [
                 'model' => $model,
-                
             ]);
         }
     }
@@ -91,7 +90,11 @@ class ProgrammingController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->is_release=1;
+        $model->hide = 0;
+        $model->no_form=0;
+        $model->hits =0;
+        $model->date=date("U");
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

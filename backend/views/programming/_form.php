@@ -13,7 +13,7 @@ use  kartik\datecontrol\DateControl;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'is_release')->textInput() ?>
+<!--    --><?//= $form->field($model, 'is_release')->textInput() ?>
 
     <?= $form->field($model, 'resource')->textInput(['maxlength' => true]) ?>
 
@@ -26,27 +26,18 @@ use  kartik\datecontrol\DateControl;
     <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'full_text')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'date')->widget(DateControl::classname(),[
-        'type'=>DateControl::FORMAT_DATETIME,
-        'displayFormat' => 'd-M-Y H:i:s',
-        'ajaxConversion'=>true,
-        'widgetOptions' => [
-            'pluginOptions' => [
-                'autoclose' => true
-            ]
-        ]
-    ])?>
+
 <!--    --><?//= $form->field($model, 'date')->textInput() ?>
 
     <?= $form->field($model, 'meta_desc')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_key')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'hits')->textInput() ?>
+<!--    --><?//= $form->field($model, 'hits')->textInput() ?>
 
-    <?= $form->field($model, 'hide')->textInput() ?>
+<!--    --><?//= $form->field($model, 'hide')->textInput() ?>
 
-    <?= $form->field($model, 'no_form')->textInput() ?>
+<!--    --><?//= $form->field($model, 'no_form')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

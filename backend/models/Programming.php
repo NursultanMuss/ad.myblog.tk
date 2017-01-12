@@ -35,19 +35,19 @@ class Programming extends \yii\db\ActiveRecord
         return '{{%programming}}';
     }
 
-//    public function behaviors()
-//    {
-//        return [
-//                [
-//            'class' => TimestampBehavior::className(),
-//            'attributes' => [
-//                ActiveRecord::EVENT_BEFORE_INSERT => 'creation_time',
-//                ActiveRecord::EVENT_BEFORE_UPDATE => 'update_time',
-//                    ],
-//            'value' => function() { return date('U');},
-//                ],
-//            ];
-//    }
+    public function behaviors()
+    {
+        return [
+                [
+            'class' => TimestampBehavior::className(),
+            'attributes' => [
+                ActiveRecord::EVENT_BEFORE_INSERT => 'date',
+                ActiveRecord::EVENT_BEFORE_UPDATE => 'date',
+                    ],
+            'value' => function() { return date('U');},
+                ],
+            ];
+    }
 
     /**
      * @inheritdoc
@@ -55,10 +55,12 @@ class Programming extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['is_release', 'resource', 'res_link', 'title', 'entry_image', 'category', 'full_text', 'date', 'meta_desc', 'meta_key', 'hits', 'hide', 'no_form'], 'required'],
+            [['is_release', 'resource', 'res_link', 'title', 'entry_image', 'category', 'date','full_text',  'meta_desc', 'meta_key', 'hits', 'hide', 'no_form'], 'required'],
             [['is_release', 'date', 'hits', 'hide', 'no_form'], 'integer'],
             [['entry_image', 'full_text'], 'string'],
             [['resource', 'res_link', 'title', 'category', 'meta_desc', 'meta_key'], 'string', 'max' => 255],
+//            [['date'], 'date', 'format' => 'd m Y']
+
         ];
     }
 

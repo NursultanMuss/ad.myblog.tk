@@ -8,6 +8,7 @@ use backend\models\WorksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * WorksController implements the CRUD actions for Works model.
@@ -65,9 +66,17 @@ class WorksController extends Controller
     {
         $model = new Works();
 
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
+            if (Yii::$app->request->isPost) {
+                $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+                if ($model->upload()) {
+                    // file is uploaded successfully
+                    return;
+                }
+            }
             return $this->render('create', [
                 'model' => $model,
             ]);
