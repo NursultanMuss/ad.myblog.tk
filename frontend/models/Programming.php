@@ -21,7 +21,7 @@ class Programming extends ActiveRecord{
             7 => 'Июля', 8 => 'Августа', 9 => 'Сентября', 10 => 'Октября', 11 => 'Ноября', 12 => 'Декабря'
         ];
 
-        $this->date = date('j ', $this->date).$monthes[date('n', $this->date)].date(', Y', $this->date);
+        $this->date_of_publication = date('j ', $this->date_of_publication).$monthes[date('n', $this->date_of_publication)].date(', Y', $this->date_of_publication);
 //        $this->full_text = $this->replaceContent($this->full_text);
 
 
@@ -47,7 +47,7 @@ class Programming extends ActiveRecord{
     }
 */
     public static function setNumbers($posts){
-        $all_releases= Programming::find()->where(['is_release' => 1])->orderBy("date")->all();
+        $all_releases= Programming::find()->where(['is_release' => 1])->orderBy("date_of_publication")->all();
         $number =1;
         foreach($all_releases as $release){
             foreach ($posts as $post){

@@ -27,7 +27,7 @@ class Works extends ActiveRecord{
         if($this->id == 1){
             $this->img = '/img/works/' . $this->img;
         }else{
-            $this->img = '/img/works/' . $this->img . ".jpg";
+            $this->img = '/img/works/' . $this->img;
         }
        // $this->video=$this->youtube("{youtube:".$this->video." ,480,295}");
 

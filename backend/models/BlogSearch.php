@@ -18,7 +18,7 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['id', 'is_release', 'date', 'hits', 'hide', 'no_form'], 'integer'],
+            [['id', 'date', 'hits', 'hide'], 'integer'],
             [['title', 'category', 'img', 'intro_text', 'full_text', 'meta_desc', 'meta_key'], 'safe'],
         ];
     }
@@ -47,9 +47,6 @@ class BlogSearch extends Blog
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 4,
-            ]
         ]);
 
         $this->load($params);
@@ -63,11 +60,9 @@ class BlogSearch extends Blog
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'is_release' => $this->is_release,
             'date' => $this->date,
             'hits' => $this->hits,
             'hide' => $this->hide,
-            'no_form' => $this->no_form,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'is_release',
             'title',
             'category',
             'img',
@@ -40,7 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'meta_key',
             'hits',
             'hide',
-            'no_form',
         ],
     ]) ?>
 

@@ -8,8 +8,6 @@ use backend\models\ProgPostsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
 
 /**
  * ProgrammingController implements the CRUD actions for Programming model.
@@ -28,7 +26,6 @@ class ProgrammingController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            
         ];
     }
 
@@ -40,6 +37,7 @@ class ProgrammingController extends Controller
     {
         $searchModel = new ProgPostsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -48,7 +46,7 @@ class ProgrammingController extends Controller
 
     /**
      * Displays a single Programming model.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionView($id)
@@ -66,11 +64,7 @@ class ProgrammingController extends Controller
     public function actionCreate()
     {
         $model = new Programming();
-        $model->is_release=1;
-        $model->hide = 0;
-        $model->no_form=0;
-        $model->hits =0;
-        $model->date=date("U");
+        $model->hits=0;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -84,17 +78,13 @@ class ProgrammingController extends Controller
     /**
      * Updates an existing Programming model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $model->is_release=1;
-        $model->hide = 0;
-        $model->no_form=0;
-        $model->hits =0;
-        $model->date=date("U");
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -107,7 +97,7 @@ class ProgrammingController extends Controller
     /**
      * Deletes an existing Programming model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -120,7 +110,7 @@ class ProgrammingController extends Controller
     /**
      * Finds the Programming model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param string $id
      * @return Programming the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

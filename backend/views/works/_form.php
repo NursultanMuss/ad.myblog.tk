@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Works */
@@ -16,19 +18,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?php
-    if(isset($model->img) && file_exists(Yii::getAlias('@webroot'. $model->img)))
-    {
-        echo Html::img($model->img, ['class'=>'img-responsive']);
-        echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
-    }
-    ?>
+<!--    --><?php
+//    if(isset($model->img) && file_exists(Yii::getAlias('@webroot'. $model->img)))
+//    {
+//        echo Html::img($model->img, ['class'=>'img-responsive']);
+//        echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
+//    }
+//    ?>
 
     <?= $form->field($model, 'file')->fileInput() ?>
 
     <?= $form->field($model, 'type')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
+    <?= $form->field($model, 'active')->dropDownList([ '1' => '1', '0' => '0']) ?>
 
     <?= $form->field($model, 'date')->textInput(['maxlength' => true]) ?>
 

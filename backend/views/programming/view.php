@@ -29,19 +29,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'is_release',
             'resource',
             'res_link',
             'title',
             'entry_image:ntext',
             'category',
+            'date_of_publication',
             'full_text:ntext',
-            'date',
             'meta_desc',
             'meta_key',
             'hits',
             'hide',
-            'no_form',
         ],
     ]) ?>
 

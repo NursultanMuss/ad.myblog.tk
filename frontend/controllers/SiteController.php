@@ -88,7 +88,7 @@ class SiteController extends Controller
             'defaultPageSize'=>4,
             'totalCount' => $query_w -> count()
         ]);
-        $posts= $query->orderBy(['date' => SORT_DESC])
+        $posts= $query->orderBy(['date_of_publication' => SORT_DESC])
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
@@ -185,7 +185,7 @@ class SiteController extends Controller
             'defaultPageSize'=> 9,
             'totalCount' => $query -> count()
         ]);
-        $prog_posts=$query->orderBy(['date' => SORT_DESC])
+        $prog_posts=$query->orderBy(['date_of_publication' => SORT_DESC])
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();

@@ -9,12 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
-use backend\models\UploadForm;
 use yii\imagine\Image;
-use Imagine\Gd;
-use Imagine\Image\Box;
-use Imagine\Image\BoxInterface;
-use yii\helpers\BaseFileHelper;
 
 /**
  * WorksController implements the CRUD actions for Works model.
@@ -84,31 +79,41 @@ class WorksController extends Controller
         $model = new Works();
 
 
-        if ($model->load(Yii::$app->request->post())) {
-            $file = UploadedFile::getInstance($model, 'file');
-            if ($file && $file->tempName) {
-                $model->file = $file;
+        if ($model->load(Yii::$app->request->post()) ) {
 
-                $dir = Yii::getAlias('@frontend'.'/web/img/works/');
-                $fileName = $model->file->baseName . '.' . $model->file->extension;
-                echo $dir;
-                $model->file->saveAs($dir .$fileName);
-                $model->file = $fileName; // без этого ошибка
-                $model->img = '/' . $dir . $fileName;
-                // Для ресайза фотки до 800x800px по большей стороне надо обращаться к функции Box() или widen, так как в обертках доступны только 5 простых функций: crop, frame, getImagine, setImagine, text, thumbnail, watermark
-                $photo = Image::getImagine()->open($dir . $fileName);
-                $photo->thumbnail(new Box(800, 800))->save($dir . $fileName, ['quality' => 90]);
-//                $imagineObj = new Imagine();
-//                $imageObj = $imagineObj->open(\Yii::$app->basePath . $dir . $fileName);
-//                $imageObj->resize($imageObj->getSize()->widen(400))->save(\Yii::$app->basePath . $dir . $fileName);
+            $dir=Yii::getAlias('@frontend'.'/web/img/works/');
+            $model->file= UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/works/').$model->file->baseName.'.'.$model->file->extension);
+            $model->img=$model->file->baseName.'.'.$model->file->extension;
+            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/works/thumbs'));
+            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
+                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
 
-               $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/works/thumbs'));
-                Image::thumbnail($dir . $fileName, 150, 70)
-                    ->save(Yii::getAlias($dir . 'thumbs/' . $fileName), ['quality' => 80]);
-            }
-        }
-        if($model->save()){
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
+
+//            $file = UploadedFile::getInstance($model, 'file');
+//            if ($file && $file->tempName) {
+//                $model->file = $file;
+//
+//                $dir = Yii::getAlias('@frontend'.'/web/img/works/');
+//                $fileName = $model->file->baseName . '.' . $model->file->extension;
+//                echo $dir;
+//                $model->file->saveAs($dir .$fileName);
+//                $model->file = $fileName; // без этого ошибка
+//                $model->img = '/' . $dir . $fileName;
+//                // Для ресайза фотки до 800x800px по большей стороне надо обращаться к функции Box() или widen, так как в обертках доступны только 5 простых функций: crop, frame, getImagine, setImagine, text, thumbnail, watermark
+//                $photo = Image::getImagine()->open($dir . $fileName);
+//                $photo->thumbnail(new Box(800, 800))->save($dir . $fileName, ['quality' => 90]);
+////                $imagineObj = new Imagine();
+////                $imageObj = $imagineObj->open(\Yii::$app->basePath . $dir . $fileName);
+////                $imageObj->resize($imageObj->getSize()->widen(400))->save(\Yii::$app->basePath . $dir . $fileName);
+//
+//               $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/works/thumbs'));
+//                Image::thumbnail($dir . $fileName, 150, 70)
+//                    ->save(Yii::getAlias($dir . 'thumbs/' . $fileName), ['quality' => 80]);
+            //}
         } else {
             return $this->render('create', [
                 'model' => $model,

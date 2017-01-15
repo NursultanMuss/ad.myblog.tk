@@ -37,12 +37,12 @@ class Works extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['address', 'description', 'type', 'active', 'date', 'client', 'details', 'technology', 'testimonial'], 'required'],
+            [['address', 'description', 'img','type', 'active', 'date', 'client', 'details', 'technology', 'testimonial'], 'required'],
             [['active', 'date'], 'integer'],
             [['testimonial'], 'string'],
-            [['address', 'description'], 'string', 'max' => 255],
+            [['address', 'description','img'], 'string', 'max' => 255],
             [['type', 'client', 'details', 'technology'], 'string', 'max' => 60],
-            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 0],
+            ['file', 'file'],
             [['del_img'], 'boolean']
         ];
     }
@@ -56,7 +56,7 @@ class Works extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'address' => Yii::t('app', 'Address'),
             'description' => Yii::t('app', 'Description'),
-            'img' => Yii::t('app', 'Img'),
+            'file' => Yii::t('app', 'Logo'),
             'type' => Yii::t('app', 'Type'),
             'active' => Yii::t('app', 'Active'),
             'date' => Yii::t('app', 'Date'),
@@ -64,6 +64,7 @@ class Works extends \yii\db\ActiveRecord
             'details' => Yii::t('app', 'Details'),
             'technology' => Yii::t('app', 'Technology'),
             'testimonial' => Yii::t('app', 'Testimonial'),
+
         ];
     }
 
@@ -74,8 +75,9 @@ class Works extends \yii\db\ActiveRecord
     public function afterFind() {
         $controller = Yii::$app->controller->id;
         if($controller == "site"){
-            $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);}
-            $this->img = '/img/works/' . $this->img;
+            $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+        }
+        $this->img = '/img/works/' . $this->img;
         $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }
 }

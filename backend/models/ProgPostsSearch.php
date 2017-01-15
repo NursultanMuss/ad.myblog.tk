@@ -18,8 +18,8 @@ class ProgPostsSearch extends Programming
     public function rules()
     {
         return [
-            [['id', 'is_release', 'date', 'hits', 'hide', 'no_form'], 'integer'],
-            [['resource', 'res_link', 'title', 'entry_image', 'category', 'full_text', 'meta_desc', 'meta_key'], 'safe'],
+            [['id', 'hits', 'hide'], 'integer'],
+            [['resource', 'res_link', 'title', 'entry_image', 'category', 'date_of_publication', 'full_text', 'meta_desc', 'meta_key'], 'safe'],
         ];
     }
 
@@ -47,37 +47,33 @@ class ProgPostsSearch extends Programming
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 8,
-            ],
-        ]);
-
-        $dataProvider->setSort([
-           'attributes' =>[
-               'date',
-               'title' => [
-                   'asc' => ['title' => SORT_ASC],
-                   'desc' => ['title' => SORT_DESC],
-                   'label' => 'sdas',
-                   'default' => SORT_ASC
-               ]
-           ]
         ]);
 
         $this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
-//             $query->where('0=1');
+            // $query->where('0=1');
             return $dataProvider;
         }
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'Дата' => $this->date,
+            'id' => $this->id,
+            'date_of_publication' => $this->date_of_publication,
+            'hits' => $this->hits,
+            'hide' => $this->hide,
         ]);
 
-        $query->andFilterWhere(['like', 'Title', $this->title]);
+        $query->andFilterWhere(['like', 'resource', $this->resource])
+            ->andFilterWhere(['like', 'res_link', $this->res_link])
+            ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'entry_image', $this->entry_image])
+            ->andFilterWhere(['like', 'category', $this->category])
+            ->andFilterWhere(['like', 'full_text', $this->full_text])
+            ->andFilterWhere(['like', 'meta_desc', $this->meta_desc])
+            ->andFilterWhere(['like', 'meta_key', $this->meta_key]);
+
         return $dataProvider;
     }
 }

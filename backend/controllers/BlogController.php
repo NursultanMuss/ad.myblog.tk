@@ -8,6 +8,8 @@ use backend\models\BlogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * BlogController implements the CRUD actions for Blog model.
@@ -27,6 +29,29 @@ class BlogController extends Controller
                 ],
             ],
         ];
+    }
+
+
+     public function createDirectory($path) {
+        //$filename = "/folder/{$dirname}/";
+        if (file_exists($path)) {
+            //echo "The directory {$path} exists";
+        } else {
+            mkdir($path, 0775, true);
+            //echo "The directory {$path} was successfully created.";
+        }
+    }
+
+    public function deleteImg($model,$current_image){
+        if($model->del_img)
+                    {
+                        if(file_exists(Yii::getAlias('@frontend'.'/web/img/blog/'.$current_image)))
+                        {
+                            //удаляем файл
+                            unlink(Yii::getAlias('@frontend'.'/web/img/blog/'.$current_image));
+                            $model->img = '';
+                        }
+                    }
     }
 
     /**
@@ -64,8 +89,21 @@ class BlogController extends Controller
     public function actionCreate()
     {
         $model = new Blog();
+        $model->hits=0;
+        $model->hide=0;
+        $model->date=date('U');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+            $dir=Yii::getAlias('@frontend'.'/web/img/blog/');
+            $model->file= UploadedFile::getInstance($model, 'file');
+            $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
+            $model->img=$model->file->baseName.'.'.$model->file->extension;
+            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/blog/thumbs'));
+            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
+                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
+
+            $model->save();
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,8 +121,20 @@ class BlogController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $current_image = $model->img;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            $dir=Yii::getAlias('@frontend'.'/web/img/blog/');
+//            $model->file= UploadedFile::getInstance($model, 'file');
+//            $this->deleteImg($model, $current_image);
+//
+//            $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
+//            $model->img=$model->file->baseName.'.'.$model->file->extension;
+//            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/blog/thumbs'));
+//            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
+//                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
+
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
