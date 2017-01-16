@@ -64,8 +64,14 @@ class Blog extends \yii\db\ActiveRecord
 
     public $file;
     public $del_img;
+    public $link;
 
     public function afterFind() {
        $this->img = '/img/blog/' . $this->img;
+        $controller = Yii::$app->controller->id;
+        if($controller == "site"){
+            $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
+        }
+        $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }
 }

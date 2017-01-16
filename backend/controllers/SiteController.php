@@ -66,7 +66,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $query=Programming::find()->all();
-        $query_p_l=Programming::find()->orderBy(['date' => SORT_DESC])->limit(3)->all();
+        $query_p_l=Programming::find()->orderBy(['date_of_publication' => SORT_DESC])->limit(3)->all();
         $progPostN = count($query);
         $query_b_l=Blog::find()->orderBy(['date' => SORT_DESC])->limit(3)->all();
         $query_b=Blog::find()->all();

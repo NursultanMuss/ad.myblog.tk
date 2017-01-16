@@ -9,7 +9,7 @@ use yii\grid\GridView;
 ?>
 <tr>
     <td class="date">
-      <i><?= $value_p->date?></i>
+      <i><?= $value_p->date_of_publication?></i>
     </td>
     <td class="title">
         <a href="<?= $value_p->link?>"><?= $value_p->title?></a>
