@@ -20,9 +20,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Create Works'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-//        'filterModel' => $searchModel,
+        'filterModel' => $searchModel,
         'layout'=>"{pager}\n{items}\n{summary}",
         'summary' => "Сейчас на <b>{page}</b> странице <b>{begin}</b>\n - <b>{end}</b> записи из <b>{totalCount}</b> .",
         'showOnEmpty' => true,
@@ -30,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             [
                 'attribute' => 'address',
-                'header' => "Ссылка",
+//                'label' => "Ссылка",
+                'filter' => false,
                 'format' => "raw",
                 'contentOptions' => [
                     'class' => 'td_title',
@@ -38,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 'value' => function($data){
                     return Html::a(
-                        'Перейти на сам сайт',
+                        'Перейти на '. $data->address,
                         $data->address,
                         [
                             'title' => $data->address,
@@ -51,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'description',
-                'header' => 'Описание',
+//                'label' => 'description',
                 'contentOptions' => [
                     'class' => 'td_title',
                     'style' => 'white-space: normal;'
@@ -62,7 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'img',
-                'header' => 'Картинка',
+//                'label' => 'img',
+                'filter' => false,
                 'format' => 'raw',
                 'value' => function($img){
                     return Html::img($img->img,[
@@ -73,7 +76,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'date',
-                'label' => 'Изменено',
+//                'label' => 'date',
+                'filter' => false,
                 'format' =>  ['date', 'HH:mm:ss -- dd.MM.Y'],
                 'contentOptions' => [
                     'class' => 'td_title',
@@ -85,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'attribute' => 'client',
-                'header' => 'Клиент',
+//                'label' => 'client',
                 'contentOptions' => [
                     'class' => 'td_title',
                     'style' => 'white-space: normal;'
@@ -102,7 +106,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'id',
-                'header' => 'Просмотреть',
+//                'header' => 'Просмотреть',
+                'filter' => false,
                 'contentOptions' => [
                     'class' => 'td_title',
                     'style' => 'white-space: normal;'
@@ -120,5 +125,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]); ?>
+    <?php \yii\widgets\Pjax::end(); ?>
 </div>
 <!--Url::toRoute(['../../site/work', 'id' => $url->id])-->

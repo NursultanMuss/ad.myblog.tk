@@ -53,14 +53,15 @@ class Works extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'address' => Yii::t('app', 'Address'),
-            'description' => Yii::t('app', 'Description'),
+            'id' => Yii::t('app', ''),
+            'address' => Yii::t('app', 'Ссылка'),
+            'description' => Yii::t('app', 'Описание'),
+            'img' => Yii::t('app', 'Картинка'),
             'file' => Yii::t('app', 'Logo'),
             'type' => Yii::t('app', 'Type'),
             'active' => Yii::t('app', 'Active'),
-            'date' => Yii::t('app', 'Date'),
-            'client' => Yii::t('app', 'Client'),
+            'date' => Yii::t('app', 'Изменено'),
+            'client' => Yii::t('app', 'Клиент'),
             'details' => Yii::t('app', 'Details'),
             'technology' => Yii::t('app', 'Technology'),
             'testimonial' => Yii::t('app', 'Testimonial'),

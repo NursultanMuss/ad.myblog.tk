@@ -62,13 +62,12 @@ class WorksSearch extends Works
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+//            'id' => $this->id,
             'active' => $this->active,
-            'date' => $this->date,
+//            'date' => $this->date,
         ]);
 
-        $query->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'description', $this->description])
+        $query->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'img', $this->img])
             ->andFilterWhere(['like', 'type', $this->type])
             ->andFilterWhere(['like', 'client', $this->client])
