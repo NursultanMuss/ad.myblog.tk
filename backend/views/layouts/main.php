@@ -64,8 +64,6 @@ AppAsset::register($this);
                 ['label' => 'Все статьи', 'url' => '/backend/web/programming/index'],
                 '<li class="divider"></li>',
                 ['label' => 'Создать статью', 'url' => '/backend/web/programming/create'],
-                '<li class="divider"></li>',
-                ['label' => 'All Categories', 'url' => '/backend/web/programming/index'],
                ]
            ],
             [    'label' => 'Мои работы',
@@ -73,8 +71,6 @@ AppAsset::register($this);
                     ['label' => 'Все статьи', 'url' => '/backend/web/works/index'],
                     '<li class="divider"></li>',
                     ['label' => 'Создать статью', 'url' => '/backend/web/works/create'],
-                    '<li class="divider"></li>',
-                    ['label' => 'All Categories', 'url' => '/backend/web/works/index'],
                 ]
             ],
             [    'label' => 'Статьи блога',
@@ -82,8 +78,6 @@ AppAsset::register($this);
                     ['label' => 'Все статьи', 'url' => '/backend/web/blog/index'],
                     '<li class="divider"></li>',
                     ['label' => 'Создать статью', 'url' => '/backend/web/blog/create'],
-                    '<li class="divider"></li>',
-                    ['label' => 'All Categories', 'url' => '/backend/web/blog/index'],
                 ]
             ]
         ],

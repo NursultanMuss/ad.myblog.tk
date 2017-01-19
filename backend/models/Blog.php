@@ -37,7 +37,7 @@ class Blog extends \yii\db\ActiveRecord
         return [
             [['title', 'category', 'img', 'intro_text', 'full_text', 'date', 'meta_desc', 'meta_key', 'hits', 'hide'], 'required'],
             [['intro_text', 'full_text'], 'string'],
-            [['date', 'hits', 'hide'], 'integer'],
+            [[ 'hits', 'hide'], 'integer'],
             [['title', 'category', 'img', 'meta_desc', 'meta_key'], 'string', 'max' => 255],
         ];
     }

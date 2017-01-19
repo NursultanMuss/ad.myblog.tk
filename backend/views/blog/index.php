@@ -15,7 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Blog'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Создать запись'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Удалить'), ['delete_all'], ['id' => 'check_all', 'class' => 'btn btn-danger', 'aria-label' => 'Вы действительно хотите удалить эти записи?']) ?>
     </p>
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
@@ -27,10 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'emptyText' => 'Нет данных',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'checkboxOptions' => function($model, $key, $index, $widget) {
+                    return ['value' => $model['id']];
+                },
+            ],
 //            'id',
             [
                 'attribute' => 'date',
+                'filter' => false,
                 'format' =>  ['date', 'HH:mm:ss -- dd.MM.Y'],
                 'contentOptions' => [
                     'style' => 'white-space: normal;'
@@ -51,6 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'img',
                 'header' => 'Главное фото',
+                'filter' => false,
                 'format' => 'raw',
                 'value' => function($img){
                     return Html::img($img->img,[
@@ -81,3 +89,16 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php \yii\widgets\Pjax::end(); ?>
 </div>
+<script>
+
+        var keys = $("#check_all").yiiGridView('getSelectedRows');
+        $.post({
+            url: delete_all, // your controller action
+            dataType: 'json',
+            data: {keylist: keys},
+            success: function (data) {
+                alert('I did it! Processed checked rows.')
+            },
+        });
+
+</script>

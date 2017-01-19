@@ -38,7 +38,34 @@ $this->registerMetaTag([
 
         <div class="grid-wrap works">
 
-            <?php foreach($works as $work) {include "intro_work.php";}?>
+            <?php
+            $KeyMax=count($works);
+            for($i=0; $i<$KeyMax;$i=$i+3){
+            ?>
+            <div class="row">
+                <?php
+                foreach($works as $key=>$work){
+                    if($key>=$i && $key<$i+3){
+                        include 'intro_work.php';
+                    }
+
+
+                }?>
+            </div>
+            <?php
+            }
+            ?>
+            <div id="programming_pages">
+<!--                <span> Страница --><?//= $active_page?><!-- из--><?//=$count_pages?><!--</span>-->
+                <?= LinkPager::widget([
+                    'pagination' => $pagination,
+                    'firstPageLabel' => 'В начало',
+                    'lastPageLabel' => 'В конец',
+                    'prevPageLabel' => '&laquo;'
+                ]) ?>
+
+                <div class="clear"></div>
+            </div>
         </div> <!-- grid inside 3/4-->
 
     </section>

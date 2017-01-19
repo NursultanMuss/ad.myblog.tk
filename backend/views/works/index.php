@@ -9,7 +9,7 @@ use backend\models\Works;
 /* @var $searchModel backend\models\WorksSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Works');
+$this->title = Yii::t('app', 'Мои работы');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="works-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Works'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Добавить запись'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'summary' => "Сейчас на <b>{page}</b> странице <b>{begin}</b>\n - <b>{end}</b> записи из <b>{totalCount}</b> .",
         'showOnEmpty' => true,
         'emptyText' => 'Нет данных',
-        'columns' => [
+        'columns' =>    [
             [
                 'attribute' => 'address',
 //                'label' => "Ссылка",

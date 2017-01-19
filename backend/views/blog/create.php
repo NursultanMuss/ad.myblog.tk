@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Blog */
 
-$this->title = Yii::t('app', 'Create Blog');
+$this->title = Yii::t('app', 'Создать запись Blog');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Blogs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

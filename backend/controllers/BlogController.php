@@ -93,6 +93,11 @@ class BlogController extends Controller
         $model->hide=0;
         $model->date=date('U');
 
+        if(Yii::$app->request->isAjax && $model->load($_POST)){
+            Yii::$app->response->format = 'json';
+            return \yii\widgets\ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) ) {
             $dir=Yii::getAlias('@frontend'.'/web/img/blog/');
             $model->file= UploadedFile::getInstance($model, 'file');
@@ -154,6 +159,43 @@ class BlogController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDelete_all()
+    {
+        if (isset($_POST['keylist'])) {
+            $keys = \yii\helpers\Json::decode($_POST['keylist']);
+            // you will have the array of pk ids to process in $keys
+            // perform batch action on these keys and return status
+            // back to ajax call above
+            
+        }
+
+//        $action=Yii::$app->request->post('action');
+//        $selection=Yii::$app->request->get('selection[]');//typecasting.
+//        echo $selection;
+//        foreach($selection as $id){
+//
+//            $model = Blog::findOne((int)$id);//make a typecasting
+//            //do your stuff
+//            echo "<pre>";
+//            print_r($model);
+//            echo "</pre>";
+//        }
+
+//        echo $selection;
+//        foreach($selection as $ids){
+//
+//                print_r($ids);
+//
+//        }
+//            echo $id;
+//            $model = Blog::findOne((int)$id);//make a typecasting
+//            $model->delete();
+//        }
+//        $this->findModel($id)->delete();
+
+//        return $this->redirect(['index']);
     }
 
     /**

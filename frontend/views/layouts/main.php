@@ -78,6 +78,7 @@ $admin_actions = ['admin', 'admin_blog']
     
     <div class="<?php echo $action;?>-page main grid-wrap">
 <?=$content?>
+        
         <?php
         $actionList =['programming', 'blog', 'prog_post', 'blog_post','prog_category', 'blog_category'];
         foreach ($actionList as $action1){

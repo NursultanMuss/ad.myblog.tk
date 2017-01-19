@@ -86,7 +86,7 @@ class ProgrammingController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -106,6 +106,19 @@ class ProgrammingController extends Controller
 
         return $this->redirect(['index']);
     }
+
+//    public function actionDelete_all()
+//    {
+////        $action=Yii::$app->request->post('action');
+//        $selection=(array)Yii::$app->request->post('selection');//typecasting
+//        foreach($selection as $id){
+//            $model = Programming::findOne((int)$id);//make a typecasting
+//            $model->delete();
+//        }
+//        $this->findModel($id)->delete();
+//
+//        return $this->redirect(['index']);
+//    }
 
     /**
      * Finds the Programming model based on its primary key value.

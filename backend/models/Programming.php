@@ -72,7 +72,6 @@ class Programming extends \yii\db\ActiveRecord
         if($controller == "site"){
             $this->date_of_publication = date('j', $this->date_of_publication).date('.n', $this->date_of_publication).date('. Y', $this->date_of_publication);
         }
-        $this->entry_image = '/img/programming/' . $this->entry_image;
         $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }
 }

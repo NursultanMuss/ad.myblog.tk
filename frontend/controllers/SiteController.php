@@ -158,7 +158,7 @@ class SiteController extends Controller
      public function actionWorks(){
         $query=Works::find()->where(['active' => 1]);
         $pagination = new Pagination([
-            'defaultPageSize'=>5,
+            'defaultPageSize'=>6,
             'totalCount' => $query -> count()
         ]);
         $works=$query->orderBy(['date' => SORT_ASC])

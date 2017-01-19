@@ -1,9 +1,14 @@
 <article class="grid col-one-third mq3-col-full main-page-art">
-    <h5><?=$post->title?></h5>
-    <?=$post->entry_image?>
+    <div class="thumbnail">
+        <?=$post->entry_image?>
+        <div class="caption">
+            <h5><?=$post->title?></h5>
 
-    <p class="more">
-        <a href="<?= $post->link?>">Читать полностью</a>
-    </p>
-   
+
+            <p class="more">
+                <a href="<?= $post->link?>">Читать полностью</a>
+            </p>
+        </div>
+
+    </div>
 </article>

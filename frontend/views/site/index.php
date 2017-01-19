@@ -80,7 +80,7 @@ $this->registerMetaTag([
 
 </section>
     <div id="programming_pages">
-        <span> Страница <?= $active_page?> из<?=$count_pages?></span>
+<!--        <span> Страница --><?//= $active_page?><!-- из--><?//=$count_pages?><!--</span>-->
         <?= LinkPager::widget([
             'pagination' => $pagination,
             'firstPageLabel' => 'В начало',

@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Create Programming'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Удалить'), ['delete_all'], ['class' => 'btn btn-danger', 'aria-label' => 'Вы действительно хотите удалить эти записи?']) ?>
     </p>
     <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
@@ -27,7 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'showOnEmpty' => true,
         'emptyText' => 'Нет данных',
         'columns' => [
-            [ 'class' => 'yii\grid\CheckboxColumn'],
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+            ],
             ['class' => 'yii\grid\SerialColumn'],
 
 //            'id',
