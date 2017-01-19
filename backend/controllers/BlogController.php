@@ -32,26 +32,17 @@ class BlogController extends Controller
     }
 
 
-     public function createDirectory($path) {
-        //$filename = "/folder/{$dirname}/";
-        if (file_exists($path)) {
-            //echo "The directory {$path} exists";
-        } else {
-            mkdir($path, 0775, true);
-            //echo "The directory {$path} was successfully created.";
-        }
-    }
-
     public function deleteImg($model,$current_image){
-        if($model->del_img)
-                    {
-                        if(file_exists(Yii::getAlias('@frontend'.'/web/img/blog/'.$current_image)))
-                        {
-                            //удаляем файл
-                            unlink(Yii::getAlias('@frontend'.'/web/img/blog/'.$current_image));
-                            $model->img = '';
-                        }
-                    }
+        if(isset($model->del_img)) {
+            echo "It's exist!!!";
+            if (file_exists(Yii::getAlias('@frontend'. $current_image))) {
+                //удаляем файл
+
+                unlink(Yii::getAlias('@frontend'.  $current_image));
+                $model->img = '';
+            }
+        }
+                    
     }
 
     /**
@@ -93,23 +84,19 @@ class BlogController extends Controller
         $model->hide=0;
         $model->date=date('U');
 
-        if(Yii::$app->request->isAjax && $model->load($_POST)){
-            Yii::$app->response->format = 'json';
-            return \yii\widgets\ActiveForm::validate($model);
-        }
+//        if(Yii::$app->request->isAjax && $model->load($_POST)){
+//            Yii::$app->response->format = 'json';
+//            return \yii\widgets\ActiveForm::validate($model);
+//        }
 
         if ($model->load(Yii::$app->request->post()) ) {
-            $dir=Yii::getAlias('@frontend'.'/web/img/blog/');
             $model->file= UploadedFile::getInstance($model, 'file');
             $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
             $model->img=$model->file->baseName.'.'.$model->file->extension;
-            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/blog/thumbs'));
-            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
-                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
 
             $model->save();
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -125,22 +112,23 @@ class BlogController extends Controller
      */
     public function actionUpdate($id)
     {
+
         $model = $this->findModel($id);
-        $current_image = $model->img;
+        $model->date=date('U');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            $dir=Yii::getAlias('@frontend'.'/web/img/blog/');
-//            $model->file= UploadedFile::getInstance($model, 'file');
-//            $this->deleteImg($model, $current_image);
-//
-//            $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
-//            $model->img=$model->file->baseName.'.'.$model->file->extension;
-//            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/blog/thumbs'));
-//            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
-//                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
+        $current_image =$model->img;
+//        echo $current_image;
 
-            
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()) ) {
+           $model->file= UploadedFile::getInstance($model, 'file');
+            $this->deleteImg($model,$current_image);
+
+        $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
+        $model->img=$model->file->baseName.'.'.$model->file->extension;
+
+
+             $model->save();
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

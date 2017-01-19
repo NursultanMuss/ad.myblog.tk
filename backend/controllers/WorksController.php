@@ -85,13 +85,10 @@ class WorksController extends Controller
             $model->file= UploadedFile::getInstance($model, 'file');
             $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/works/').$model->file->baseName.'.'.$model->file->extension);
             $model->img=$model->file->baseName.'.'.$model->file->extension;
-            $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/works/thumbs'));
-            Image::thumbnail($dir . $model->file->baseName.'.'.$model->file->extension, 150, 70)
-                ->save(Yii::getAlias($dir . 'thumbs/' . $model->file->baseName.'.'.$model->file->extension), ['quality' => 90]);
 
             $model->save();
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
 
 //            $file = UploadedFile::getInstance($model, 'file');
 //            if ($file && $file->tempName) {
@@ -132,7 +129,7 @@ class WorksController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,

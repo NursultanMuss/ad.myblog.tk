@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
 <div class="works-form">
 
-    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']],['enableAjaxValidation' => true]); ?>
 
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
@@ -43,7 +43,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'testimonial')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Создать') : Yii::t('app', 'Обновить'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

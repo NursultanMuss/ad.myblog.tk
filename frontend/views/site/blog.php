@@ -6,6 +6,8 @@
  * Time: 19:47
  */
 use yii\widgets\LinkPager;
+
+
 $this->title="Мой блог";
 $this->registerMetaTag([
     'name' => 'description',

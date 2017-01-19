@@ -78,7 +78,7 @@ class Works extends \yii\db\ActiveRecord
         if($controller == "site"){
             $this->date = date('j', $this->date).date('.n', $this->date).date('. Y', $this->date);
         }
-        $this->img = '/img/works/' . $this->img;
+          $this->img = '/img/works/' . $this->img;
         $this->link = Yii::$app->urlManager->createUrl(["works/update", "id" => $this->id]);
     }
 }
