@@ -17,7 +17,10 @@ class AppAsset extends AssetBundle
     public $js = [
          'js/jquery.flexslider-min.js',
         'js/scripts.js',
-        'http://code.jquery.com/jquery.min.js',
+        'js/jquery.cycle2.js',
+        'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js',
+        'js/jquery.cycle2.core.js',
+//        'http://code.jquery.com/jquery.min.js',
 //        '//vk.com/js/api/openapi.js?63'
     ];
     public $depends = [

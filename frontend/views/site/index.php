@@ -36,34 +36,33 @@ $this->registerMetaTag([
             <div class="slider grid col-one-half mq2-col-full">
                 <div class="flexslider">
                     <div class="slides">
-<div class="slide">
-    <figure>
-        <img class="img-responsive" src="/web/img/img2.jpg" alt="">
-        <figcaption>
-            <div>
-                <h5>Caption 1</h5>
-                <p>Lorem ipsum dolor set amet, lorem, <a href="#">link text</a></p>
-            </div>
-        </figcaption>
-    </figure>
-</div>
+                        <div class="slide">
+                            <figure>
+                                <img class="img-responsive" src="img/img2.jpg" alt="">
+                                <figcaption>
+                                    <div>
+                                        <h5>Caption 11s1</h5>
+                                        <p>Lorem ipsum dolor set amet, lorem, <a href="#">link text</a></p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
 
-<div class="slide">
-    <figure>
-        <img src="../web/img/img.jpg" alt="">
-        <figcaption>
-            <div>
-                <h5>Caption 2</h5>
-                <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                        <div class="slide">
+                            <figure>
+                                <img src="img/img.jpg" alt="">
+                                <figcaption>
+                                    <div>
+                                        <h5>Caption 2</h5>
+                                        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </figcaption>
-    </figure>
-</div>
-</div>
-</div>
-</div>
-
-</section>
+        </section>
 
 <section class="services grid-wrap">
     <header class="grid col-full">
@@ -71,7 +70,29 @@ $this->registerMetaTag([
         <p class="fleft">Статьи про программирование</p>
         <a href="<?= Yii::$app->urlManager->createUrl(["site/programming"])?>" class="arrow fright">больше статей</a>
     </header>
-        <?php
+    <div class="slideshow"
+         data-cycle-fx=carousel
+         data-cycle-timeout=0
+         data-cycle-next="#next4"
+         data-cycle-prev="#prev4"
+         data-cycle-pager="#pager4"
+         data-cycle-carousel-visible=2
+         data-allow-wrap=false
+    >
+        <img src="http://malsup.github.io/images/beach1.jpg">
+        <img src="http://malsup.github.io/images/beach2.jpg">
+        <img src="http://malsup.github.io/images/beach3.jpg">
+        <img src="http://malsup.github.io/images/beach4.jpg">
+        <img src="http://malsup.github.io/images/beach9.jpg">
+    </div>
+
+    <div class=center>
+        <a href=# id=prev4><< Prev </a>
+        <a href=# id=next4> Next >> </a>
+    </div>
+
+    <div class="cycle-pager" id=pager4></div>
+    <?php
 
         foreach ($posts as $post){include  "intro_post.php";}
         ?>

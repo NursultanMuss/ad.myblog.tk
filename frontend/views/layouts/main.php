@@ -4,10 +4,6 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use yii\widgets\Menu;
 use frontend\assets\AppAsset;
 use frontend\components\PopularPosts_Prog;
 use frontend\components\PopularPosts_Blog;
@@ -28,7 +24,7 @@ $admin_actions = ['admin', 'admin_blog']
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link rel="shortcut icon" href="../frontend/web/favicon.ico" type='image/x-icon' />
+    <link rel="shortcut icon" href="favicon.ico" type='image/x-icon' />
     <script type="text/javascript" src="//vk.com/js/api/openapi.js?136"></script>
 
 <!--    <script type="text/javascript">
@@ -155,7 +151,10 @@ $admin_actions = ['admin', 'admin_blog']
 
 </div>
 
-
+<!-- jQuery -->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>-->
+<!--<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.min.js">\x3C/script>')</script>-->
 
 <?php $this->endBody() ?>
 </body>

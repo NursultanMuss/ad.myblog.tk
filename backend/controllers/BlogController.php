@@ -33,13 +33,14 @@ class BlogController extends Controller
 
 
     public function deleteImg($model,$current_image){
-        if(isset($model->del_img)) {
-            echo "It's exist!!!";
-            if (file_exists(Yii::getAlias('@frontend'. $current_image))) {
+        if($model->del_img) {
+//            echo "It's exist!!!";
+            if (file_exists(Yii::getAlias('@frontend'.'/web'.  $current_image))) {
                 //удаляем файл
-
-                unlink(Yii::getAlias('@frontend'.  $current_image));
+                unlink(Yii::getAlias('@frontend'.'/web'.  $current_image));
                 $model->img = '';
+
+
             }
         }
                     
@@ -120,8 +121,19 @@ class BlogController extends Controller
 //        echo $current_image;
 
         if ($model->load(Yii::$app->request->post()) ) {
+//            if($model->file == null){
+//                return$this->redirect(['update', 'id'=>$id ]);
+//            }
            $model->file= UploadedFile::getInstance($model, 'file');
-            $this->deleteImg($model,$current_image);
+
+            if (file_exists(Yii::getAlias('@frontend'.'/web'.  $current_image))) {
+                //удаляем файл
+                unlink(Yii::getAlias('@frontend'.'/web'.  $current_image));
+                $model->img = '';
+
+
+            }
+
 
         $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/blog/').$model->file->baseName.'.'.$model->file->extension);
         $model->img=$model->file->baseName.'.'.$model->file->extension;

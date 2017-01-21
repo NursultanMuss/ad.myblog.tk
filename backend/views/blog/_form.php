@@ -18,12 +18,12 @@ use dosamigos\ckeditor\CKEditor;
     <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>
 
     <?php
-    if( file_exists(Yii::getAlias('@frontend'.'/web/img/blog/', $model->img))) {
+    if( file_exists(Yii::getAlias('@frontend'.'/web'. $model->img))) {
         echo Html::img($model->img, ['class'=>'img-responsive']);
         echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
     }
     ?>
-    <?= $form->field($model, 'file')->fileInput() ?>
+    <?= $form->field($model, 'file')->fileInput(['allowEmpty'=> false]) ?>
 
     <?= $form->field($model, 'intro_text')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],

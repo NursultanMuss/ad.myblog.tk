@@ -57,6 +57,7 @@ class Works extends \yii\db\ActiveRecord
             'address' => Yii::t('app', 'Ссылка'),
             'description' => Yii::t('app', 'Описание'),
             'img' => Yii::t('app', 'Картинка'),
+            'del_img' => Yii::t('app', 'Удалить фото?'),
             'file' => Yii::t('app', 'Logo'),
             'type' => Yii::t('app', 'Type'),
             'active' => Yii::t('app', 'Active'),

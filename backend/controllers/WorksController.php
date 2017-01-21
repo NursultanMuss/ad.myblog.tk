@@ -90,27 +90,6 @@ class WorksController extends Controller
 
             return $this->redirect(['index']);
 
-//            $file = UploadedFile::getInstance($model, 'file');
-//            if ($file && $file->tempName) {
-//                $model->file = $file;
-//
-//                $dir = Yii::getAlias('@frontend'.'/web/img/works/');
-//                $fileName = $model->file->baseName . '.' . $model->file->extension;
-//                echo $dir;
-//                $model->file->saveAs($dir .$fileName);
-//                $model->file = $fileName; // без этого ошибка
-//                $model->img = '/' . $dir . $fileName;
-//                // Для ресайза фотки до 800x800px по большей стороне надо обращаться к функции Box() или widen, так как в обертках доступны только 5 простых функций: crop, frame, getImagine, setImagine, text, thumbnail, watermark
-//                $photo = Image::getImagine()->open($dir . $fileName);
-//                $photo->thumbnail(new Box(800, 800))->save($dir . $fileName, ['quality' => 90]);
-////                $imagineObj = new Imagine();
-////                $imageObj = $imagineObj->open(\Yii::$app->basePath . $dir . $fileName);
-////                $imageObj->resize($imageObj->getSize()->widen(400))->save(\Yii::$app->basePath . $dir . $fileName);
-//
-//               $this->createDirectory(Yii::getAlias('@frontend'.'/web/img/works/thumbs'));
-//                Image::thumbnail($dir . $fileName, 150, 70)
-//                    ->save(Yii::getAlias($dir . 'thumbs/' . $fileName), ['quality' => 80]);
-            //}
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -127,8 +106,29 @@ class WorksController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $model->date=date('U');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $current_image =$model->img;
+
+        if ($model->load(Yii::$app->request->post())  ) {
+//            if($model->file == null){
+//                return$this->redirect(['update', 'id'=>$id ]);
+//            }
+                $model->file= UploadedFile::getInstance($model, 'file');
+
+                if (file_exists(Yii::getAlias('@frontend'.'/web'.  $current_image))) {
+                    //удаляем файл
+                    unlink(Yii::getAlias('@frontend'.'/web'.  $current_image));
+                    $model->img = '';
+
+
+                }
+
+
+                $model->file->saveAs(Yii::getAlias('@frontend'.'/web/img/works/').$model->file->baseName.'.'.$model->file->extension);
+                $model->img=$model->file->baseName.'.'.$model->file->extension;
+
+            $model->save();
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [

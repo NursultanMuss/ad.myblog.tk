@@ -18,13 +18,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-<!--    --><?php
-//    if(isset($model->img) && file_exists(Yii::getAlias('@webroot'. $model->img)))
-//    {
-//        echo Html::img($model->img, ['class'=>'img-responsive']);
-//        echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
-//    }
-//    ?>
+    <?php
+    if( file_exists(Yii::getAlias('@frontend'.'/web'. $model->img)))
+    {
+        echo Html::img($model->img, ['class'=>'img-responsive']);
+        echo $form->field($model,'del_img')->checkBox(['class'=>'span-1']);
+    }
+    ?>
 
     <?= $form->field($model, 'file')->fileInput() ?>
 
