@@ -63,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($img){
                     return Html::img($img->img,[
                         'alt'=>'',
+                        'class'=> 'img-responsive',
                         'style' => 'width:120px;'
                     ]);
                 },

@@ -70,47 +70,23 @@ $this->registerMetaTag([
         <p class="fleft">Статьи про программирование</p>
         <a href="<?= Yii::$app->urlManager->createUrl(["site/programming"])?>" class="arrow fright">больше статей</a>
     </header>
-    <div class="slideshow"
-         data-cycle-fx=carousel
-         data-cycle-timeout=0
-         data-cycle-next="#next4"
-         data-cycle-prev="#prev4"
-         data-cycle-pager="#pager4"
-         data-cycle-carousel-visible=2
-         data-allow-wrap=false
-    >
-        <img src="http://malsup.github.io/images/beach1.jpg">
-        <img src="http://malsup.github.io/images/beach2.jpg">
-        <img src="http://malsup.github.io/images/beach3.jpg">
-        <img src="http://malsup.github.io/images/beach4.jpg">
-        <img src="http://malsup.github.io/images/beach9.jpg">
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <?php
+
+            foreach ($posts as $post){include  "intro_post.php";}
+            ?>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
-
-    <div class=center>
-        <a href=# id=prev4><< Prev </a>
-        <a href=# id=next4> Next >> </a>
-    </div>
-
-    <div class="cycle-pager" id=pager4></div>
-    <?php
-
-        foreach ($posts as $post){include  "intro_post.php";}
-        ?>
 
 
 
 </section>
-    <div id="programming_pages">
-<!--        <span> Страница --><?//= $active_page?><!-- из--><?//=$count_pages?><!--</span>-->
-        <?= LinkPager::widget([
-            'pagination' => $pagination,
-            'firstPageLabel' => 'В начало',
-            'lastPageLabel' => 'В конец',
-            'prevPageLabel' => '&laquo;'
-        ]) ?>
-
-        <div class="clear"></div>
-    </div>
+  
 
 <section class="works grid-wrap">
     <header class="grid col-full">

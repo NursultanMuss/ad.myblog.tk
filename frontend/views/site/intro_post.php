@@ -1,14 +1,15 @@
-<article class="grid col-one-third mq3-col-full main-page-art">
-    <div class="thumbnail">
+<div class="swiper-slide">
+<article class="prog" style='height: 100%'>
+    <div >
+    <a href="<?= $post->link?>">
         <?=$post->entry_image?>
-        <div class="caption">
-            <h5><?=$post->title?></h5>
-
-
-            <p class="more">
-                <a href="<?= $post->link?>">Читать полностью</a>
-            </p>
+    </a>
+        <div>
+	        <a href="<?= $post->link?>">
+	            <h5><?=$post->title?></h5>
+	        </a>
         </div>
 
     </div>
 </article>
+</div>

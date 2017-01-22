@@ -13,14 +13,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/style.css',
+        'css/swiper.min.css'
     ];
     public $js = [
          'js/jquery.flexslider-min.js',
         'js/scripts.js',
-        'js/jquery.cycle2.js',
-        'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js',
-        'js/jquery.cycle2.core.js',
-//        'http://code.jquery.com/jquery.min.js',
+        'js/swiper.jquery.min.js',
 //        '//vk.com/js/api/openapi.js?63'
     ];
     public $depends = [

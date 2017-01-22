@@ -89,8 +89,8 @@ class SiteController extends Controller
             'totalCount' => $query_w -> count()
         ]);
         $posts= $query->orderBy(['date_of_publication' => SORT_DESC])
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
+            ->offset(0)
+            ->limit(8)
             ->all();
         $works=$query_w->orderBy(['date' => SORT_ASC])
             ->offset($pagination_w->offset)
@@ -199,7 +199,6 @@ class SiteController extends Controller
 
     public function actionProg_post(){
         $prog_post =Programming::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')])->one();
-        Programming::setNumbers([$prog_post]);
         return $this->render('prog_post', [
             'prog_post' => $prog_post
         ]);

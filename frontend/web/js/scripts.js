@@ -1,5 +1,16 @@
 $(document).ready(function() {
-
+//initialize swiper when document ready
+	var mySwiper = new Swiper ('.swiper-container', {
+		// Optional parameters
+		direction: 'horizontal',
+		slidesPerView: 4,
+		freeMode: true,
+		loop: false,
+		speed: 300,
+		spaceBetween: 50,
+		nextButton: '.swiper-button-next',
+		prevButton: '.swiper-button-prev',
+	})
 
 
 // Slider  	
@@ -97,9 +108,11 @@ $(document).ready(function() {
 // CONTACT form validation 	
 	if (jQuery().validate) {
 	    	$("#contact_form").validate();	 
-	};   
-	
-	
-	
+	};
+
+
+
+
+
 // END
 });
