@@ -11,6 +11,7 @@ use Yii;
  * @property string $resource
  * @property string $res_link
  * @property string $title
+ * @property string $entry_title_description
  * @property string $entry_image
  * @property string $category
  * @property string $date_of_publication
@@ -36,8 +37,8 @@ class Programming extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['resource', 'res_link', 'title', 'entry_image', 'category', 'date_of_publication', 'full_text', 'meta_desc', 'meta_key', 'hits', 'hide'], 'required'],
-            [['entry_image', 'full_text'], 'string'],
+            [['resource', 'res_link', 'title', 'entry_title_description', 'entry_image', 'category', 'date_of_publication', 'full_text', 'meta_desc', 'meta_key', 'hits', 'hide'], 'required'],
+            [['entry_title_description', 'full_text'], 'string'],
             [['date_of_publication'], 'safe'],
             [['hits', 'hide'], 'integer'],
             [['resource', 'res_link', 'title', 'category', 'meta_desc', 'meta_key'], 'string', 'max' => 255],
@@ -53,6 +54,7 @@ class Programming extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'resource' => Yii::t('app', 'Ресурс'),
             'res_link' => Yii::t('app', 'Ссылка'),
+            'entry_title_description' => Yii::t('app', 'Вводное описание'),
             'title' => Yii::t('app', 'Заголовок'),
             'entry_image' => Yii::t('app', 'Фото статьи'),
             'category' => Yii::t('app', 'Категория'),

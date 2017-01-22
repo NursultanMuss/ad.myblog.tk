@@ -7,6 +7,7 @@
         <div>
 	        <a href="<?= $post->link?>">
 	            <h5><?=$post->title?></h5>
+                <p><?=$post->entry_title_description?></p>
 	        </a>
         </div>
 

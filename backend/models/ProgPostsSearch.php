@@ -19,7 +19,7 @@ class ProgPostsSearch extends Programming
     {
         return [
             [['id', 'hits', 'hide'], 'integer'],
-            [['resource', 'res_link', 'title', 'entry_image', 'category', 'date_of_publication', 'full_text', 'meta_desc', 'meta_key'], 'safe'],
+            [['resource', 'res_link', 'title', 'entry_title_description', 'entry_image', 'category', 'date_of_publication', 'full_text', 'meta_desc', 'meta_key'], 'safe'],
         ];
     }
 
@@ -71,6 +71,7 @@ class ProgPostsSearch extends Programming
         $query->andFilterWhere(['like', 'resource', $this->resource])
             ->andFilterWhere(['like', 'res_link', $this->res_link])
             ->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'entry_title_description', $this->entry_title_description])
             ->andFilterWhere(['like', 'entry_image', $this->entry_image])
             ->andFilterWhere(['like', 'category', $this->category])
             ->andFilterWhere(['like', 'full_text', $this->full_text])

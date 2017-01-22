@@ -57,6 +57,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 'enableSorting' => true,
                 'encodeLabel' => true,
             ],
+            [
+                'attribute' => 'entry_title_description',
+                'contentOptions' => [
+                    'class' => 'td_title',
+                    'style' => 'white-space: normal;'
+                ],
+                'enableSorting' => true,
+                'encodeLabel' => true,
+            ],
 //            'entry_image:ntext',
             // 'category',
             // 'full_text:ntext',
