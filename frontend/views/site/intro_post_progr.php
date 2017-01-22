@@ -1,12 +1,13 @@
-<article class="">
-    <div >
-    <a href="<?= $post->link?>">
+<article class="grid col-one-third mq3-col-full main-page-art">
+    <div class="thumbnail">
         <?=$post->entry_image?>
-    </a>
-        <div>
-	        <a href="<?= $post->link?>">
-	            <h5><?=$post->title?></h5>
-	        </a>
+        <div class="caption">
+            <h5><?=$post->title?></h5>
+
+
+            <p class="more">
+                <a href="<?= $post->link?>">Читать полностью</a>
+            </p>
         </div>
 
     </div>

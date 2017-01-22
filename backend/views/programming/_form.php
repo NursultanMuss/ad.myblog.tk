@@ -19,6 +19,8 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'entry_title_description')->textarea(['rows' => 6]) ?>    
+
     <?= $form->field($model, 'entry_image')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'category')->textInput(['maxlength' => true]) ?>

@@ -64,7 +64,7 @@ $this->registerMetaTag([
             </div>
         </section>
 
-<section class="services grid-wrap">
+<section class="programming grid-wrap">
     <header class="grid col-full">
         <hr>
         <p class="fleft">Статьи про программирование</p>
