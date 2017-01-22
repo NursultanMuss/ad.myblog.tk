@@ -7,7 +7,7 @@ $(document).ready(function() {
 		freeMode: true,
 		loop: false,
 		speed: 300,
-		spaceBetween: 50,
+		spaceBetween: 20,
 		nextButton: '.swiper-button-next',
 		prevButton: '.swiper-button-prev',
 	})

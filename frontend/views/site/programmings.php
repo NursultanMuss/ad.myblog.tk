@@ -33,7 +33,7 @@ $this->registerMetaTag([
         <?php
         foreach($prog_posts as $key=>$post){
             if($key>=$i && $key<$i+3){
-                include 'intro_post.php';
+                include 'intro_post_progr.php';
             }
 
 
