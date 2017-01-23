@@ -6,8 +6,8 @@
 	    </a>
     </div>
     <div class="prog_text">
-        <a href="<?= $post->link?>">
-            <h5>
+        <h5>
+            <a href="<?= $post->link?>">
             	<span style="min-height: 48px; font-family: 'Roboto Slab'; display: block;"><?=$post->title?></span>
             	<?php 
             	if($post->entry_image == '<span></span>'){
@@ -15,9 +15,8 @@
             		<div class='title_description'><?=$post->entry_title_description?></div> 
         		<?php
         		}?>
-            	
-            </h5>
-        </a>
+        	</a>
+        </h5>
     </div>
 </article>
 </div>
