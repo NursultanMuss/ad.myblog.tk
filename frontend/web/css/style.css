@@ -841,3 +841,23 @@ animation: fadein 2s;
 	height: 200px !important;
 
 }
+
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+	left: 0px;
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+	right: 0px;
+}
+.swiper-button-next, .swiper-button-prev{
+	top: 0;
+	height: 100%;
+	margin-top: -10px;	
+	opacity: 1;
+	-webkit-transition: opacity 0.5s ease-out 0.5s;
+    -moz-transition: opacity 0.5s ease-out 0.5s;
+    -o-transition: opacity 0.5s ease-out 0.5s;;
+	transition: opacity 0.5s ease-out 0.5s;
+}
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
+	opacity: 0.2;
+}

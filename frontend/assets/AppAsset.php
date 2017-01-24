@@ -12,8 +12,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/swiper.min.css',
         'css/style.css',
-        'css/swiper.min.css'
     ];
     public $js = [
          'js/jquery.flexslider-min.js',
