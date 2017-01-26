@@ -33,7 +33,7 @@ $this->registerMetaTag([
             </div>
 
 
-            <div class="slider grid col-one-half mq2-col-full">
+            <div class="slider grid col-one-half mq2-col-full" style="height: 300px;">
                 <div class="flexslider">
                     <div class="slides">
                         <div class="slide">
